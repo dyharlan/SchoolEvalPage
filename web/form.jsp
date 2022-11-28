@@ -112,7 +112,7 @@
                 <input type="radio" name="q10" id="q10" value="1" required><label for="q10">1</label>
             </fieldset>
 
-            <input type="submit" 
+            <input type="submit" value="Submit Form">
         </form>
     </body>
 </html>

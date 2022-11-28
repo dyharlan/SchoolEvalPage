@@ -51,7 +51,7 @@ public class EvalLoadServlet extends HttpServlet {
             Class.forName(driver);
             System.out.println("Driver successfully loaded.");
         } catch (ClassNotFoundException cnfe) {
-            System.err.println("Driver not found or not loaded. ");
+            response.sendError(500, "An unexpected error has occured!: " + cnfe.toString());
         }
         //open connection
         String url = "jdbc:mysql://localhost:3310?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false";
@@ -62,43 +62,65 @@ public class EvalLoadServlet extends HttpServlet {
             conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected to: " + url);
         } catch (SQLException sqle) {
-            System.err.println("An unexpected error occured! " + sqle.toString());
+            response.sendError(500, "An unexpected error has occured!: " + sqle.toString());
         }
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession();
-        StringBuilder teacher_info = new StringBuilder();
+        StringBuilder evaluated_teachers = new StringBuilder();
+        StringBuilder unevaluated_teachers = new StringBuilder();
+
         try{
             stmt = conn.createStatement();
             String cmd1 = "USE evaluation";
             stmt.execute(cmd1);
             //set parameterized query
-            String ps_query = "SELECT course_assignment.class_code, teacher.TEACHER_CODE, person.FNAME, person.LNAME,AGE FROM EVALUATION.PERSON LEFT JOIN EVALUATION.TEACHER ON person.person_id = teacher.person_id LEFT JOIN EVALUATION.COURSE_ASSIGNMENT ON TEACHER.TEACHER_CODE = COURSE_ASSIGNMENT.TEACHER_CODE where TEACHER.teacher_code is not null and TEACHER.teacher_code in (SELECT TEACHER_CODE FROM course_assignment \n" +
-"where class_code = (select class_code from class_assignment where stu_num = ?)) AND course_assignment.class_code = (select class_code from class_assignment where stu_num = ?) order by person.person_id asc";
+            String evaluated_query = "select person.fname, person.lname, eval_status.teacher_num, eval_status.course_code, course_offerings.course_name FROM eval_status left join teacher on eval_status.teacher_num = teacher.teacher_num left join person on teacher.person_id = person.person_id left join course_offerings on eval_status.course_code = course_offerings.course_code where eval_status.stu_num = ?;";
+            String unevaluated_query = "SELECT person.fname, person.lname, course_assignments.teacher_num, course_assignments.course_code, course_offerings.course_name FROM course_assignments \n" +
+"left join eval_status on course_assignments.teacher_num = eval_status.teacher_num and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_list where stu_num = ?) \n" +
+"left join teacher on course_assignments.teacher_num = teacher.teacher_num left join person on teacher.person_id = person.person_id\n" +
+"left join course_offerings on course_assignments.course_code = course_offerings.course_code\n" +
+"where class_code = (select class_code from class_student_list where stu_num = ?) \n" +
+" and eval_status.teacher_num is null and eval_status.course_code is null order by course_code asc;";
+            
             //retrieve preparedStatement obj from conn
-            ps = conn.prepareStatement(ps_query);
+            ps = conn.prepareStatement(evaluated_query);
+            ps.setString(1, (String) session.getAttribute("STU_NUM"));
+            
+            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                teacher_info.append("<tr>" + "\n");
+//                teacher_info.append("<td>" + rs.getString("class_code") + "</td>\n");
+//                teacher_info.append("<td>" + rs.getString("TEACHER_NUM") + "</td>\n");
+//                teacher_info.append("<td>" + rs.getString("course_code") + "</td>\n");
+//                teacher_info.append("<td>" + rs.getString("FNAME") + "</td>\n");
+//                teacher_info.append("<td>" + rs.getString("LNAME") + "</td>\n");
+//                teacher_info.append("<td>" + rs.getString("DOB") +"</td>\n");
+//                teacher_info.append("</tr>" + "\n");
+//            }
+            while(rs.next()){
+                evaluated_teachers.append("<p> Name: " + rs.getString("FNAME") + " " + rs.getString("LNAME") + "<br>Course: " + rs.getString("course_code") + " - " + rs.getString("course_name") +"</p>\n");
+
+            }
+            ps = conn.prepareStatement(unevaluated_query);
             ps.setString(1, (String) session.getAttribute("STU_NUM"));
             ps.setString(2, (String) session.getAttribute("STU_NUM"));
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while(rs.next()){
-                teacher_info.append("<tr>" + "\n");
-                teacher_info.append("<td>" + rs.getString("class_code") + "</td>\n");
-                teacher_info.append("<td>" + rs.getString("TEACHER_CODE") + "</td>\n");
-                teacher_info.append("<td>" + rs.getString("FNAME") + "</td>\n");
-                teacher_info.append("<td>" + rs.getString("LNAME") + "</td>\n");
-                teacher_info.append("<td>" + rs.getString("AGE") +"</td>\n");
-                teacher_info.append("</tr>" + "\n");
+                unevaluated_teachers.append("<a href=\"form.jsp?teacher_num=" + rs.getString("teacher_num") + "&course_code=" + rs.getString("course_code") + "\">" + "Name: " + rs.getString("FNAME") + " " + rs.getString("LNAME") + "<br>Course: " + rs.getString("course_code") + " - " + rs.getString("course_name") +"</a><br>\n");
             }
             stmt.close();
             rs.close();
             ps.close();
             conn.close();
-            session.setAttribute("teacher_info", teacher_info);
+            session.setAttribute("evaluated_teachers", evaluated_teachers);
+            session.setAttribute("unevaluated_teachers", unevaluated_teachers);
+
             dispatcher = request.getRequestDispatcher("eval.jsp");
             dispatcher.forward(request,response);
             
         }
         catch(SQLException sqle){
-            System.err.println("An unexpected error occured! " + sqle.toString());
+            response.sendError(500, "An unexpected error has occured!: " + sqle.toString());
         }
     }
 

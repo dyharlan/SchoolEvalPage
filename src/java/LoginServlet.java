@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
         
         try{
             //set parameterized query
-            String ps_query = "SELECT person.PERSON_ID,STU_NUM,FNAME,MNAME,LNAME,AGE,YR_START FROM EVALUATION.PERSON LEFT JOIN EVALUATION.STUDENT ON person.person_id = student.person_id where stu_num is not null and stu_num = ?";
+            String ps_query = "SELECT person.PERSON_ID,STU_NUM,FNAME,MNAME,LNAME,person.DOB,YR_START FROM EVALUATION.PERSON LEFT JOIN EVALUATION.STUDENT ON person.person_id = student.person_id where stu_num is not null and stu_num = ?";
             //retrieve preparedStatement obj from conn
             ps = conn.prepareStatement(ps_query);
             String student_id = request.getParameter("userid");
@@ -131,7 +131,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
         catch(SQLException sqle){
-            System.err.println("An unexpected error occured! " + sqle.toString());
+            response.sendError(500, "An unexpected error has occured!: " + sqle.toString());
         }
         
     }

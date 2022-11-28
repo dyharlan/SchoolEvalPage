@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Evaluation Page</title>
+        <title>Please select a teacher to evaluate</title>
     </head>
     <body>
         <%
@@ -18,20 +18,24 @@
             response.setHeader("Expires", "0"); //for proxy
             if(session.getAttribute("STU_NUM") == null)
                 response.sendRedirect("login.jsp");
-            StringBuilder teacher_info = (StringBuilder) session.getAttribute("teacher_info");
         %>
         <h1>Hello ${STU_NUM}, ${STU_NAME}!</h1>
         
-            <table>
+<!--            <table>
             <tr>
                 <th>Class Code</th>
                 <th>Teacher Code</th>
+                <th>Course Code</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Age</th>
+                <th>Date of Birth</th>
             </tr>
-             <%= session.getAttribute("teacher_info")%>
-            </table>
+             
+            </table>-->
+<!--             <h2>Evaluated teachers:</h2>-->
+                ${evaluated_teachers}
+<!--             <h2>Unevaluated teachers:</h2>-->
+                <p>${unevaluated_teachers}</p>
         <form action="Logout" >
             <pre>
                 <input type="submit" Value="Logout">

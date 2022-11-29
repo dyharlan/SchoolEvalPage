@@ -15,6 +15,7 @@
     </head>
     <body>
         <%
+            
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //http 1.1+
             response.setHeader("Pragma", "no-cache"); //http 1.0
             response.setHeader("Expires", "0"); //for proxy
@@ -24,6 +25,9 @@
         <h1><%= session.getAttribute("STU_NUM")%>, <%= request.getParameter("teacher_num")%>, <%= request.getParameter("course_code")%></h1>
         
         <form action="EvalProcessor" method="POST">
+            <input type="hidden" id="teacher_num" name="teacher_num" value="<%= request.getParameter("teacher_num")%>">
+            <input type="hidden" id="course_code" name="course_code" value="<%= request.getParameter("course_code")%>">
+
             <fieldset>
                 <legend>1. The teacher has been present and punctual at attending classes</legend>
                 <input type="radio" name="q1" id="q1" value="5" required><label for="q1">5</label>

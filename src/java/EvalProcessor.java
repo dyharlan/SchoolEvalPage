@@ -5,23 +5,27 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  *
  * @author dyhar
  */
-import java.sql.*;
-import javax.servlet.RequestDispatcher;
-public class LoginServlet extends HttpServlet {
+public class EvalProcessor extends HttpServlet {
     Connection conn;
     PreparedStatement ps;
-    ResultSet rs;
     Statement stmt;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +44,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet EvalProcessor</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EvalProcessor at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -96,8 +100,6 @@ public class LoginServlet extends HttpServlet {
         catch(SQLException sqle){
             System.err.println("An unexpected error occured! " + sqle.toString());
         }
-        String userid = request.getParameter("userid");
-        //String password = request.getParameter("password");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession();
         
@@ -107,48 +109,49 @@ public class LoginServlet extends HttpServlet {
             String cmd1 = "USE evaluation";
             stmt.execute(cmd1);
             //set parameterized query
-            String ps_query = "CALL open_student_info(?)";
+            String ps_query = "CALL evaluate_teacher(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             //retrieve preparedStatement obj from conn
             ps = conn.prepareStatement(ps_query);
-            String student_id = request.getParameter("userid");
+            String student_id = (String) session.getAttribute("STU_NUM");
+            String teacher_id = request.getParameter("teacher_num");
+            String course_code = request.getParameter("course_code");
+            UUID uuid = UUID.randomUUID();
+            String form_code = uuid.toString();
+            System.out.println("form code: " + form_code);
+            System.out.println(student_id);
+            System.out.println(teacher_id);
+            System.out.println(course_code);
             ps.setString(1, student_id);
+            ps.setString(2, teacher_id);
+            ps.setString(3, course_code);
+            ps.setString(4, form_code);
+            ps.setInt(5, Integer.parseInt(request.getParameter("q1")));
+            ps.setInt(6, Integer.parseInt(request.getParameter("q2")));
+            ps.setInt(7, Integer.parseInt(request.getParameter("q3")));
+            ps.setInt(8, Integer.parseInt(request.getParameter("q4")));
+            ps.setInt(9, Integer.parseInt(request.getParameter("q5")));
+            ps.setInt(10, Integer.parseInt(request.getParameter("q6")));
+            ps.setInt(11, Integer.parseInt(request.getParameter("q7")));
+            ps.setInt(12, Integer.parseInt(request.getParameter("q8")));
+            ps.setInt(13, Integer.parseInt(request.getParameter("q9")));
+            ps.setInt(14, Integer.parseInt(request.getParameter("q10")));
             //execute parameterized query
-            ResultSet rs = ps.executeQuery();
-            String stu_name = null;
-            String stu_num  = null;
-            while(rs.next()){
-                stu_num = rs.getString("STU_NUM");
-                stu_name = rs.getString("FNAME") + " " + rs.getString("LNAME");
-            }
+            ps.executeUpdate();
             stmt.close();
-            rs.close();
             ps.close();
             conn.close();
-            if(stu_num == null || !(student_id.equals(stu_num)) ){
-                dispatcher = request.getRequestDispatcher("login.jsp");
-                dispatcher.include(request,response);
-            }
-            else if(student_id.equals(stu_num)){   
-                session.setAttribute("STU_NUM", stu_num);
-                session.setAttribute("STU_NAME", stu_name);
+            
+               
                 
-                dispatcher = request.getRequestDispatcher("eval.jsp");
-                dispatcher.forward(request,response);
-            }
+            response.sendRedirect("eval.jsp");
+            
         }
         catch(SQLException sqle){
             response.sendError(500, "An unexpected error has occured!: " + sqle.toString());
         }
         
     }
-    @Override
-    public void init (ServletConfig config) throws ServletException{
-           super.init(config);
-       
-    }
 
-    
-       
     /**
      * Returns a short description of the servlet.
      *
@@ -158,5 +161,5 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }

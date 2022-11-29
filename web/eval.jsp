@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="loader.DataLoader"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,8 @@
     </head>
     <body>
         <%
+            DataLoader ev = new DataLoader();
+            ev.load_data(request, response);
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //http 1.1+
             response.setHeader("Pragma", "no-cache"); //http 1.0
             response.setHeader("Expires", "0"); //for proxy

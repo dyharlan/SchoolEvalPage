@@ -1,7 +1,7 @@
 CREATE DATABASE evaluation;
 USE evaluation;
 
-CREATE TABLE personss(
+CREATE TABLE persons(
 person_id INT NOT NULL AUTO_INCREMENT,
 FNAME VARCHAR(35) NOT NULL,
 MNAME VARCHAR(25),
@@ -14,7 +14,7 @@ PRIMARY KEY (person_id)
 CREATE TABLE students(
 person_id INT NOT NULL,
 STU_NUM INT NOT NULL UNIQUE,
-FOREIGN KEY (person_id) REFERENCES personss(person_id),
+FOREIGN KEY (person_id) REFERENCES persons(person_id),
 PRIMARY KEY (STU_NUM, person_id)
 );
 
@@ -24,11 +24,11 @@ DEPT_NAME VARCHAR(50) NOT NULL,
 PRIMARY KEY (DEPT_ID)
 );
 
-CREATE TABLE teacherss(
+CREATE TABLE teachers(
 person_id INT NOT NULL,
 teachers_CODE INT NOT NULL UNIQUE,
 DEPT_ID INT NOT NULL,
-FOREIGN KEY (person_id) REFERENCES personss(person_id),
+FOREIGN KEY (person_id) REFERENCES persons(person_id),
 FOREIGN KEY (DEPT_ID) REFERENCES departments(DEPT_ID),
 PRIMARY KEY (teachers_CODE, person_id)
 );
@@ -45,7 +45,7 @@ CREATE TABLE course_assignments(
 COURSE_CODE INT NOT NULL,
 teachers_CODE INT NOT NULL,
 CLASS_CODE INT NOT NULL,
-FOREIGN KEY (teachers_CODE) REFERENCES teacherss(teachers_CODE),
+FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
 FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE),
 UNIQUE(COURSE_CODE, CLASS_CODE)
 );
@@ -54,7 +54,7 @@ CREATE TABLE classes(
 CLASS_CODE INT NOT NULL,
 CLASS_NAME VARCHAR(50) NOT NULL,
 teachers_CODE INT NOT NULL,
-FOREIGN KEY (teachers_CODE) REFERENCES teacherss(teachers_CODE),
+FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
 PRIMARY KEY (CLASS_CODE)
 );
 
@@ -72,18 +72,14 @@ CREATE TABLE eval_status(
     EVAL_DATE DATE NOT NULL,
     FORM_CODE INT NOT NULL UNIQUE,
     FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM),
-    FOREIGN KEY (teachers_CODE) REFERENCES teacherss(teachers_CODE),
+    FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
 	FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE),
     UNIQUE(STU_NUM, COURSE_CODE)
 );
 
 CREATE TABLE forms(
     FORM_CODE INT NOT NULL,
-<<<<<<< Updated upstream
-    TEACHER_CODE INT NOT NULL,
-=======
-    teacher_num INT NOT NULL,
->>>>>>> Stashed changes
+    teachers_CODE INT NOT NULL,
     Q1_SCORE INT NOT NULL,
     Q2_SCORE INT NOT NULL,
     Q3_SCORE INT NOT NULL,
@@ -108,17 +104,16 @@ SELECT * FROM evaluation.persons where person_id = (select person_id from evalua
 -- list the teachers the student has in their class
 SELECT course_assignments.TEACHER_CODE, COURSE_CODE, persons.FName, persons.Lname FROM course_assignments left join teachers on teachers.teacher_code = course_assignments.teacher_code left join persons on persons.person_id = teachers.person_id where class_code = (select class_code from class_student_lists where stu_num = 202242069);
 -- list the teachers the student has in their class with full info
-SELECT course_assignments.class_code, teachers.TEACHER_CODE As "Teacher Code", course_assignments.course_code As "Course Code", persons.FNAME As "First Name", persons.MNAME As "Middle Name", persons.LNAME As "Last Name", DOB As "Date-of-Birth" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.TEACHERS ON persons.person_id = teachers.person_id LEFT JOIN EVALUATION.course_assignments ON TEACHERS.TEACHER_CODE = course_assignments.TEACHER_CODE where TEACHERS.TEACHER_CODE is not null and TEACHERS.TEACHER_CODE in (SELECT TEACHER_CODE FROM course_assignments 
+SELECT course_assignments.class_code, teachers.teachers_code As "teachers Code", course_assignments.course_code As "Course Code", persons.FNAME As "First Name", persons.MNAME As "Middle Name", persons.LNAME As "Last Name", DOB As "Date-of-Birth" FROM evaluation.persons LEFT JOIN evaluation.teachers ON persons.person_id = teachers.person_id LEFT JOIN EVALUATION.course_assignments ON teachers.teachers_code = course_assignments.teachers_code where teachers.teachers_code is not null and teachers.teachers_code in (SELECT teachers_code FROM course_assignments 
 where class_code = (select class_code from class_student_lists where stu_num = 202213379)) AND course_assignments.class_code = (select class_code from class_student_lists where stu_num = 202213379) order by persons.person_id asc;
-
 
 -- list the teachers from an entire college campus
 SELECT persons.PERSON_ID As "Person ID",TEACHER_CODE As "Teacher Code",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.TEACHERS ON persons.person_id = teachers.person_id where TEACHER_CODE is not null;
 
 -- view the teachers that the student has evaluated
-select teacher_code, course_code FROM eval_status where eval_status.stu_num = 202242069;
+select teachers_code, course_code FROM eval_status where eval_status.stu_num = 202242069;
 -- view the teachers that the student has NOT evaluated
-SELECT course_assignments.teacher_code, course_assignments.course_code FROM course_assignments left join eval_status on course_assignments.teacher_code = eval_status.teacher_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_lists where stu_num = 202269420 ) where class_code = (select class_code from class_student_lists where stu_num = 202269420) and eval_status.teacher_code is null and eval_status.course_code is null order by course_code asc;
+SELECT course_assignments.teachers_code, course_assignments.course_code FROM course_assignments left join eval_status on course_assignments.teachers_code = eval_status.teachers_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_lists where stu_num = 202269420 ) where class_code = (select class_code from class_student_lists where stu_num = 202269420) and eval_status.teachers_code is null and eval_status.course_code is null order by course_code asc;
 
 -- view the teachers with their name that the student has evaluated 
 select persons.fname, persons.lname, eval_status.teacher_code, eval_status.course_code, course_offerings.course_name FROM eval_status left join teachers on eval_status.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id left join course_offerings on eval_status.course_code = course_offerings.course_code where eval_status.stu_num = 202242069;
@@ -128,7 +123,7 @@ left join eval_status on course_assignments.teacher_code = eval_status.teacher_c
 left join teachers on course_assignments.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id
 left join course_offerings on course_assignments.course_code = course_offerings.course_code
 where class_code = (select class_code from class_student_lists where stu_num = 202242069) 
- and eval_status.teacher_code is null and eval_status.course_code is null order by course_code asc;
+ and eval_status.teachers_code is null and eval_status.course_code is null order by course_code asc;
 
  
 -- view all students

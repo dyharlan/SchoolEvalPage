@@ -76,11 +76,11 @@ FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM) ON DELETE CASCADE
 );
 
 CREATE TABLE eval_status(
-    STU_NUM INT NOT NULL KEY,
-    teachers_CODE INT NOT NULL ,
-    COURSE_CODE INT NOT NULL ,
+	FORM_CODE VARCHAR(128) NOT NULL KEY,
+    STU_NUM INT NOT NULL,
+    teachers_CODE INT NOT NULL,
+    COURSE_CODE INT NOT NULL,
     EVAL_DATE DATE NOT NULL,
-    FORM_CODE INT NOT NULL UNIQUE,
     FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM) ON DELETE CASCADE,
     FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE) ON DELETE CASCADE,
 	FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE) ON DELETE CASCADE,
@@ -88,8 +88,9 @@ CREATE TABLE eval_status(
 );
 
 CREATE TABLE forms(
-    FORM_CODE INT NOT NULL,
+    FORM_CODE VARCHAR(128) NOT NULL,
     teachers_CODE INT NOT NULL,
+	COURSE_CODE INT NOT NULL,
     Q1_SCORE INT NOT NULL,
     Q2_SCORE INT NOT NULL,
     Q3_SCORE INT NOT NULL,
@@ -102,6 +103,7 @@ CREATE TABLE forms(
     Q10_SCORE INT NOT NULL,
     FOREIGN KEY (FORM_CODE) REFERENCES eval_status(FORM_CODE) ON DELETE CASCADE,
     FOREIGN KEY (TEACHERS_CODE) REFERENCES teachers(TEACHERS_CODE) ON DELETE CASCADE,
+    FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE) ON DELETE CASCADE,
     UNIQUE(FORM_CODE, TEACHERS_CODE)
 );
 
@@ -133,6 +135,8 @@ left join course_offerings on course_assignments.course_code = course_offerings.
 where class_code = (select class_code from class_student_lists where stu_num = 202242069) 
  and eval_status.teachers_code is null and eval_status.course_code is null order by course_code asc;
 
+-- view the avg scores that a teacher has received for a course they teach.
+select teachers_code, course_code, avg(q1_score), avg(q2_score), avg(q3_score), avg(q4_score), avg(q5_score), avg(q6_score), avg(q7_score), avg(q8_score), avg(q9_score), avg(q10_score) from forms where teachers_code = 2022750511 and course_code = 2605;
  
 -- view all students
 SELECT persons.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.STUDENTS ON persons.person_id = students.person_id where stu_num is not null;

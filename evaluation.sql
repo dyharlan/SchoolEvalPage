@@ -14,7 +14,7 @@ PRIMARY KEY (person_id)
 CREATE TABLE students(
 person_id INT NOT NULL,
 STU_NUM INT NOT NULL UNIQUE,
-FOREIGN KEY (person_id) REFERENCES persons(person_id),
+FOREIGN KEY (person_id) REFERENCES persons(person_id) ON DELETE CASCADE,
 PRIMARY KEY (STU_NUM, person_id)
 );
 
@@ -27,13 +27,16 @@ PRIMARY KEY (DEPT_ID)
 CREATE TABLE teachers(
 person_id INT NOT NULL,
 teachers_CODE INT NOT NULL UNIQUE,
-DEPT_ID INT NOT NULL,
-FOREIGN KEY (person_id) REFERENCES persons(person_id),
-FOREIGN KEY (DEPT_ID) REFERENCES departments(DEPT_ID),
+FOREIGN KEY (person_id) REFERENCES persons(person_id) ON DELETE CASCADE,
 PRIMARY KEY (teachers_CODE, person_id)
 );
 
-
+CREATE TABLE teacher_dept(
+	TEACHERS_CODE INT NOT NULL KEY,
+    DEPT_ID INT NOT NULL,
+    FOREIGN KEY (TEACHERS_CODE) REFERENCES TEACHERS(TEACHERS_CODE) ON DELETE CASCADE,
+    FOREIGN KEY (DEPT_ID) REFERENCES DEPARTMENTS(DEPT_ID) ON DELETE CASCADE
+);
 
 CREATE TABLE course_offerings(
 COURSE_CODE INT NOT NULL,
@@ -45,24 +48,31 @@ CREATE TABLE course_assignments(
 COURSE_CODE INT NOT NULL,
 teachers_CODE INT NOT NULL,
 CLASS_CODE INT NOT NULL,
-FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
-FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE),
-UNIQUE(COURSE_CODE, CLASS_CODE)
+FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE) ON DELETE CASCADE,
+FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE) ON DELETE CASCADE,
+FOREIGN KEY (CLASS_CODE) REFERENCES CLASSES(CLASS_CODE) ON DELETE CASCADE,
+UNIQUE(COURSE_CODE, CLASS_CODE),
+PRIMARY KEY(COURSE_CODE, TEACHERS_CODE, CLASS_CODE)
 );
 
 CREATE TABLE classes(
 CLASS_CODE INT NOT NULL,
 CLASS_NAME VARCHAR(50) NOT NULL,
-teachers_CODE INT NOT NULL,
-FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
 PRIMARY KEY (CLASS_CODE)
+);
+
+CREATE TABLE CLASS_ADVISORS(
+	CLASS_CODE INT NOT NULL KEY,
+	teachers_CODE INT NOT NULL,
+	FOREIGN KEY (CLASS_CODE) REFERENCES CLASSES(CLASS_CODE) ON DELETE CASCADE,
+	FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE) ON DELETE CASCADE
 );
 
 CREATE TABLE class_student_lists(
 STU_NUM INT NOT NULL UNIQUE KEY,
 CLASS_CODE INT NOT NULL,
-FOREIGN KEY (CLASS_CODE) REFERENCES classes(CLASS_CODE),
-FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM)
+FOREIGN KEY (CLASS_CODE) REFERENCES classes(CLASS_CODE) ON DELETE CASCADE,
+FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM) ON DELETE CASCADE
 );
 
 CREATE TABLE eval_status(
@@ -71,9 +81,9 @@ CREATE TABLE eval_status(
     COURSE_CODE INT NOT NULL ,
     EVAL_DATE DATE NOT NULL,
     FORM_CODE INT NOT NULL UNIQUE,
-    FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM),
-    FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE),
-	FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE),
+    FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM) ON DELETE CASCADE,
+    FOREIGN KEY (teachers_CODE) REFERENCES teachers(teachers_CODE) ON DELETE CASCADE,
+	FOREIGN KEY (COURSE_CODE) REFERENCES course_offerings(COURSE_CODE) ON DELETE CASCADE,
     UNIQUE(STU_NUM, COURSE_CODE)
 );
 
@@ -90,12 +100,10 @@ CREATE TABLE forms(
     Q8_SCORE INT NOT NULL,
     Q9_SCORE INT NOT NULL,
     Q10_SCORE INT NOT NULL,
-    FOREIGN KEY (FORM_CODE) REFERENCES eval_status(FORM_CODE),
-    FOREIGN KEY (TEACHER_CODE) REFERENCES teachers(TEACHER_CODE),
-    UNIQUE(FORM_CODE, TEACHER_CODE)
+    FOREIGN KEY (FORM_CODE) REFERENCES eval_status(FORM_CODE) ON DELETE CASCADE,
+    FOREIGN KEY (TEACHERS_CODE) REFERENCES teachers(TEACHERS_CODE) ON DELETE CASCADE,
+    UNIQUE(FORM_CODE, TEACHERS_CODE)
 );
-
-use evaluation;
 
 use evaluation;
 SELECT STU_NUM FROM evaluation.students where stu_num = 202212345;
@@ -119,10 +127,10 @@ SELECT course_assignments.teachers_code, course_assignments.course_code FROM cou
 select persons.fname, persons.lname, eval_status.teacher_code, eval_status.course_code, course_offerings.course_name FROM eval_status left join teachers on eval_status.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id left join course_offerings on eval_status.course_code = course_offerings.course_code where eval_status.stu_num = 202242069;
 -- view the teachers with their name that the student has NOT evaluated
 SELECT persons.fname, persons.lname, course_assignments.teacher_code, course_assignments.course_code, course_offerings.course_name FROM course_assignments 
-left join eval_status on course_assignments.teacher_code = eval_status.teacher_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_lists where stu_num = 202242069) 
+left join eval_status on course_assignments.teacher_code = eval_status.teacher_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_list where stu_num = 202242069) 
 left join teachers on course_assignments.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id
 left join course_offerings on course_assignments.course_code = course_offerings.course_code
-where class_code = (select class_code from class_student_lists where stu_num = 202242069) 
+where class_code = (select class_code from class_student_list where stu_num = 202242069) 
  and eval_status.teachers_code is null and eval_status.course_code is null order by course_code asc;
 
  

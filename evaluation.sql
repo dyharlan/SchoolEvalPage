@@ -61,7 +61,7 @@ PRIMARY KEY (CLASS_CODE)
 CREATE TABLE class_student_lists(
 STU_NUM INT NOT NULL UNIQUE KEY,
 CLASS_CODE INT NOT NULL,
-FOREIGN KEY (CLASS_CODE) REFERENCES class(CLASS_CODE),
+FOREIGN KEY (CLASS_CODE) REFERENCES classes(CLASS_CODE),
 FOREIGN KEY (STU_NUM) REFERENCES students(STU_NUM)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE eval_status(
 
 CREATE TABLE forms(
     FORM_CODE INT NOT NULL,
-    TEACHER_NUM INT NOT NULL,
+    TEACHER_CODE INT NOT NULL,
     Q1_SCORE INT NOT NULL,
     Q2_SCORE INT NOT NULL,
     Q3_SCORE INT NOT NULL,
@@ -91,49 +91,49 @@ CREATE TABLE forms(
     Q8_SCORE INT NOT NULL,
     Q9_SCORE INT NOT NULL,
     Q10_SCORE INT NOT NULL,
-    FOREIGN KEY (FORM_CODE) REFERENCES ecourse_assignmentsal_status(FORM_CODE),
-    FOREIGN KEY (TEACHER_NUM) REFERENCES teacher(TEACHER_NUM),
-    UNIQUE(FORM_CODE, TEACHER_NUM)
+    FOREIGN KEY (FORM_CODE) REFERENCES eval_status(FORM_CODE),
+    FOREIGN KEY (TEACHER_CODE) REFERENCES teachers(TEACHER_CODE),
+    UNIQUE(FORM_CODE, TEACHER_CODE)
 );
 
 
 
 use evaluation;
-SELECT STU_NUM FROM evaluation.student where stu_num = 202212345;
-SELECT * FROM evaluation.person where person_id = (select person_id from evaluation.student where stu_num = 202212345);
+SELECT STU_NUM FROM evaluation.students where stu_num = 202212345;
+SELECT * FROM evaluation.persons where person_id = (select person_id from evaluation.students where stu_num = 202212345);
 
 -- list the teachers the student has in their class
-SELECT course_assignments.TEACHER_NUM, COURSE_CODE, person.FName, person.Lname FROM course_assignments left join teacher on teacher.teacher_num = course_assignments.teacher_num left join person on person.person_id = teacher.person_id where class_code = (select class_code from class_student_list where stu_num = 202242069);
+SELECT course_assignments.TEACHER_CODE, COURSE_CODE, persons.FName, persons.Lname FROM course_assignments left join teachers on teachers.teacher_code = course_assignments.teacher_code left join persons on persons.person_id = teachers.person_id where class_code = (select class_code from class_student_lists where stu_num = 202242069);
 -- list the teachers the student has in their class with full info
-SELECT course_assignments.class_code, teacher.TEACHER_NUM As "Teacher Code", course_assignments.course_code As "Course Code", person.FNAME As "First Name", person.MNAME As "Middle Name", person.LNAME As "Last Name", DOB As "Date-of-Birth" FROM EVALUATION.PERSON LEFT JOIN EVALUATION.TEACHER ON person.person_id = teacher.person_id LEFT JOIN EVALUATION.course_assignments ON TEACHER.TEACHER_NUM = course_assignments.TEACHER_NUM where TEACHER.TEACHER_NUM is not null and TEACHER.TEACHER_NUM in (SELECT TEACHER_NUM FROM course_assignments 
-where class_code = (select class_code from class_student_list where stu_num = 202213379)) AND course_assignments.class_code = (select class_code from class_student_list where stu_num = 202213379) order by person.person_id asc;
+SELECT course_assignments.class_code, teachers.TEACHER_CODE As "Teacher Code", course_assignments.course_code As "Course Code", persons.FNAME As "First Name", persons.MNAME As "Middle Name", persons.LNAME As "Last Name", DOB As "Date-of-Birth" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.TEACHERS ON persons.person_id = teachers.person_id LEFT JOIN EVALUATION.course_assignments ON TEACHERS.TEACHER_CODE = course_assignments.TEACHER_CODE where TEACHERS.TEACHER_CODE is not null and TEACHERS.TEACHER_CODE in (SELECT TEACHER_CODE FROM course_assignments 
+where class_code = (select class_code from class_student_lists where stu_num = 202213379)) AND course_assignments.class_code = (select class_code from class_student_lists where stu_num = 202213379) order by persons.person_id asc;
 
 
 -- list the teachers from an entire college campus
-SELECT person.PERSON_ID As "Person ID",TEACHER_NUM As "Teacher Code",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth" FROM EVALUATION.PERSON LEFT JOIN EVALUATION.TEACHER ON person.person_id = teacher.person_id where TEACHER_NUM is not null;
+SELECT persons.PERSON_ID As "Person ID",TEACHER_CODE As "Teacher Code",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.TEACHERS ON persons.person_id = teachers.person_id where TEACHER_CODE is not null;
 
 -- view the teachers that the student has evaluated
-select teacher_num, course_code FROM eval_status where eval_status.stu_num = 202242069;
+select teacher_code, course_code FROM eval_status where eval_status.stu_num = 202242069;
 -- view the teachers that the student has NOT evaluated
-SELECT course_assignments.teacher_num, course_assignments.course_code FROM course_assignments left join eval_status on course_assignments.teacher_num = eval_status.teacher_num and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_list where stu_num = 202269420 ) where class_code = (select class_code from class_student_list where stu_num = 202269420) and eval_status.teacher_num is null and eval_status.course_code is null order by course_code asc;
+SELECT course_assignments.teacher_code, course_assignments.course_code FROM course_assignments left join eval_status on course_assignments.teacher_code = eval_status.teacher_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_lists where stu_num = 202269420 ) where class_code = (select class_code from class_student_lists where stu_num = 202269420) and eval_status.teacher_code is null and eval_status.course_code is null order by course_code asc;
 
 -- view the teachers with their name that the student has evaluated 
-select person.fname, person.lname, eval_status.teacher_num, eval_status.course_code, course_offerings.course_name FROM eval_status left join teacher on eval_status.teacher_num = teacher.teacher_num left join person on teacher.person_id = person.person_id left join course_offerings on eval_status.course_code = course_offerings.course_code where eval_status.stu_num = 202242069;
+select persons.fname, persons.lname, eval_status.teacher_code, eval_status.course_code, course_offerings.course_name FROM eval_status left join teachers on eval_status.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id left join course_offerings on eval_status.course_code = course_offerings.course_code where eval_status.stu_num = 202242069;
 -- view the teachers with their name that the student has NOT evaluated
-SELECT person.fname, person.lname, course_assignments.teacher_num, course_assignments.course_code, course_offerings.course_name FROM course_assignments 
-left join eval_status on course_assignments.teacher_num = eval_status.teacher_num and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_list where stu_num = 202242069) 
-left join teacher on course_assignments.teacher_num = teacher.teacher_num left join person on teacher.person_id = person.person_id
+SELECT persons.fname, persons.lname, course_assignments.teacher_code, course_assignments.course_code, course_offerings.course_name FROM course_assignments 
+left join eval_status on course_assignments.teacher_code = eval_status.teacher_code and course_assignments.course_code = eval_status.course_code and eval_status.stu_num = (select stu_num from class_student_lists where stu_num = 202242069) 
+left join teachers on course_assignments.teacher_code = teachers.teacher_code left join persons on teachers.person_id = persons.person_id
 left join course_offerings on course_assignments.course_code = course_offerings.course_code
-where class_code = (select class_code from class_student_list where stu_num = 202242069) 
- and eval_status.teacher_num is null and eval_status.course_code is null order by course_code asc;
+where class_code = (select class_code from class_student_lists where stu_num = 202242069) 
+ and eval_status.teacher_code is null and eval_status.course_code is null order by course_code asc;
 
  
 -- view all students
-SELECT person.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSON LEFT JOIN EVALUATION.STUDENT ON person.person_id = student.person_id where stu_num is not null;
+SELECT persons.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.STUDENTS ON persons.person_id = students.person_id where stu_num is not null;
 -- view a specific student
-SELECT person.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSON LEFT JOIN EVALUATION.STUDENT ON person.person_id = student.person_id where stu_num is not null and stu_num = 202269420;
+SELECT persons.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.STUDENTS ON persons.person_id = students.person_id where stu_num is not null and stu_num = 202269420;
 
 
--- CREATE VIEW VIEW_TEACHERS AS SELECT TEACHER_NUM FROM teacher_assignment where class_code = (select class_code from class_student_list) ORDER BY TEACHER_NUM;
--- select * from view_TEACHERS  where class_student_list.stu_num = 202269420;
+-- CREATE VIEW VIEW_TEACHERS AS SELECT TEACHER_CODE FROM teacher_assignment where class_code = (select class_code from class_student_lists) ORDER BY TEACHER_CODE;
+-- select * from view_TEACHERS  where class_student_lists.stu_num = 202269420;
 

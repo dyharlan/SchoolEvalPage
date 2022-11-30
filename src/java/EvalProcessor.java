@@ -135,14 +135,24 @@ public class EvalProcessor extends HttpServlet {
             ps.setInt(12, Integer.parseInt(request.getParameter("q8")));
             ps.setInt(13, Integer.parseInt(request.getParameter("q9")));
             ps.setInt(14, Integer.parseInt(request.getParameter("q10")));
+            //disable autocommit for transaction mode
+            conn.setAutoCommit(false);
             //execute parameterized query
-            ps.executeUpdate();
+            
+            try{
+                ps.executeUpdate();
+                conn.commit();
+            }
+            catch(SQLException ex){
+                conn.rollback();
+                throw ex;
+            }
+            finally{
+                conn.setAutoCommit(true);
+            }
             stmt.close();
             ps.close();
-            conn.close();
-            
-               
-                
+            conn.close();    
             response.sendRedirect("eval.jsp");
             
         }

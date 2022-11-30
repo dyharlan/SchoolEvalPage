@@ -137,7 +137,10 @@ where class_code = (select class_code from class_student_lists where stu_num = 2
 
 -- view the avg scores that a teacher has received for a course they teach.
 select teachers_code, course_code, avg(q1_score), avg(q2_score), avg(q3_score), avg(q4_score), avg(q5_score), avg(q6_score), avg(q7_score), avg(q8_score), avg(q9_score), avg(q10_score) from forms where teachers_code = 2022750511 and course_code = 2605;
- 
+
+-- view the avg scores that a teacher has received for a course they teach. Rounded down to two places
+select teachers_code, course_code, round(avg(q1_score), 2), round(avg(q2_score), 2), round(avg(q3_score), 2), round(avg(q4_score), 2), round(avg(q5_score), 2), round(avg(q6_score), 2), round(avg(q7_score), 2), round(avg(q8_score), 2), round(avg(q9_score), 2), round(avg(q10_score), 2) from forms where teachers_code = 2022750511 and course_code = 2605;
+
 -- view all students
 SELECT persons.PERSON_ID As "Person ID",STU_NUM As "Student Number",FNAME As "First Name",MNAME As "Middle Name",LNAME As "Last Name",DOB As "Date-of-Birth", YR_START As "Year Started" FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.STUDENTS ON persons.person_id = students.person_id where stu_num is not null;
 -- view a specific student

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
 import java.util.UUID;
 
 /**
@@ -80,6 +81,7 @@ public class EvalProcessor extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        ServletContext sct = request.getServletContext();
         String driver = "com.mysql.cj.jdbc.Driver";
         try{
              Class.forName(driver);
@@ -90,8 +92,8 @@ public class EvalProcessor extends HttpServlet {
         }
         //open connection
         String url = "jdbc:mysql://localhost:3310?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false";
-        String username = "root";
-        String password = "toorenia";
+        String username = sct.getInitParameter("username");
+        String password = sct.getInitParameter("password");
         
         try{
             conn = DriverManager.getConnection(url, username, password);

@@ -7,6 +7,8 @@ package loader;
 import java.io.IOException;
 import java.sql.*;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author dyhar
  */
-public class DataLoader{
+public class DataLoader {
     Connection conn;
     PreparedStatement ps;
     ResultSet rs;
@@ -24,6 +26,7 @@ public class DataLoader{
     
     
     public void load_data(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        ServletContext sct = request.getServletContext();
         String driver = "com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(driver);
@@ -33,8 +36,8 @@ public class DataLoader{
         }
         //open connection
         String url = "jdbc:mysql://localhost:3310?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false";
-        String username = "root";
-        String password = "toorenia";
+        String username = sct.getInitParameter("username");
+        String password = sct.getInitParameter("password");
 
         try {
             conn = DriverManager.getConnection(url, username, password);

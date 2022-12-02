@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Dec 3, 2022, 3:10:42 AM
+    Author     : csean
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}

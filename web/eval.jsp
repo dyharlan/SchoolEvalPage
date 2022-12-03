@@ -26,7 +26,8 @@
             if(session.getAttribute("STU_NUM") == null)
                 response.sendRedirect("login.jsp");
         %>
-        <h1>Hello ${STU_NUM}, ${STU_NAME}!</h1>
+        <h1>Name: ${STU_NAME}</h1>
+        <h1>Student Number: ${STU_NUM}</h1>
         
 <!--            <table>
             <tr>
@@ -39,10 +40,14 @@
             </tr>
              
             </table>-->
-<!--             <h2>Evaluated teachers:</h2>-->
+            <h2>Evaluated Teachers:</h2>
+            <div class="eval">
                 ${evaluated_teachers}
-<!--             <h2>Unevaluated teachers:</h2>-->
-                <p>${unevaluated_teachers}</p>
+            </div>
+            <h2>Unevaluated Teachers:</h2>
+            <div class="uneval">
+                ${unevaluated_teachers}
+            </div>
         <form action="Logout" >
             <pre>
                 <input type="submit" Value="Logout">

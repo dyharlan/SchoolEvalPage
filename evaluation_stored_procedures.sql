@@ -10,6 +10,7 @@ where class_code = (select class_code from class_student_lists where stu_num = s
 and eval_status.teachers_code is null and eval_status.course_code is null order by course_code asc;
     End
 DELIMITER ;
+
 DELIMITER //
 Create Procedure view_evaluated_teachers(IN stu int)
 	Begin
@@ -30,7 +31,7 @@ DELIMITER ;
 DELIMITER //
 Create Procedure open_student_info(IN stu int)
 		BEGIN
-			SELECT persons.PERSON_ID,STU_NUM,FNAME,MNAME,LNAME,DOB, YR_START FROM EVALUATION.PERSONS LEFT JOIN EVALUATION.STUDENTS ON persons.person_id = students.person_id where stu_num is not null and stu_num = stu;
+			SELECT persons.PERSON_ID,STU_NUM,FNAME,MNAME,LNAME,DOB, YR_START FROM EVALUATION.PERSONS JOIN EVALUATION.STUDENTS USING(person_id) where stu_num is not null and stu_num = stu and status_code = 1;
         END
 DELIMITER ;
 

@@ -30,5 +30,8 @@
                 <input type="submit" Value="Login">
             </pre>
         </form>
+        <%  if (session.getAttribute("failure") != null) { %>
+            <h2><%= session.getAttribute("failure")%></h2>
+        <%  } %>
     </body>
 </html>

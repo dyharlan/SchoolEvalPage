@@ -83,7 +83,7 @@ public class DataLoader {
             ps.setString(1, (String) session.getAttribute("STU_NUM"));
             rs = ps.executeQuery();
             while(rs.next()){
-                unevaluated_teachers.append("<a href=\"form.jsp?teacher_num=" + rs.getString("teachers_code") + "&course_code=" + rs.getString("course_code") + "\">" + "Name: " + rs.getString("FNAME") + " " + rs.getString("LNAME") + "<br>Course: " + rs.getString("course_code") + " - " + rs.getString("course_name") +"</a><br>\n");
+                unevaluated_teachers.append("<a href=\"form.jsp?teacher_num=" + rs.getString("teachers_code") + "&course_code=" + rs.getString("course_code") + "&fname=" + rs.getString("FNAME") + "&lname=" + rs.getString("LNAME") + "\">" + "Name: " + rs.getString("FNAME") + " " + rs.getString("LNAME") + "<br>Course: " + rs.getString("course_code") + " - " + rs.getString("course_name") +"</a><br>\n");
             }
             stmt.close();
             rs.close();

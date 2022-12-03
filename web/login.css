@@ -14,3 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
+
+h2 {
+    margin-left: 25px;
+}

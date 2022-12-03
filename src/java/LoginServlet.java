@@ -128,12 +128,15 @@ public class LoginServlet extends HttpServlet {
             conn.close();
             if(stu_num == null || !(student_id.equals(stu_num)) ){
                 dispatcher = request.getRequestDispatcher("login.jsp");
+                session.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
                 dispatcher.include(request,response);
             }
             else if(student_id.equals(stu_num)){   
                 session.setAttribute("STU_NUM", stu_num);
                 session.setAttribute("STU_NAME", stu_name);
                 
+                if (session.getAttribute("failure") != null)
+                    session.removeAttribute("failure");
                 dispatcher = request.getRequestDispatcher("eval.jsp");
                 dispatcher.forward(request,response);
             }

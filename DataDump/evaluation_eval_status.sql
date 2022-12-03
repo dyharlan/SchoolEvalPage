@@ -16,11 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `eval_status`
+--
+
+DROP TABLE IF EXISTS `eval_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `eval_status` (
+  `STU_NUM` int NOT NULL,
+  `TEACHERS_CODE` int NOT NULL,
+  `COURSE_CODE` int NOT NULL,
+  `EVAL_DATE` date NOT NULL,
+  `FORM_CODE` varchar(128) NOT NULL,
+  PRIMARY KEY (`STU_NUM`),
+  UNIQUE KEY `FORM_CODE` (`FORM_CODE`),
+  KEY `TEACHERS_CODE` (`TEACHERS_CODE`),
+  CONSTRAINT `eval_status_ibfk_1` FOREIGN KEY (`STU_NUM`) REFERENCES `students` (`STU_NUM`),
+  CONSTRAINT `eval_status_ibfk_2` FOREIGN KEY (`TEACHERS_CODE`) REFERENCES `teachers` (`TEACHERS_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `eval_status`
 --
 
 LOCK TABLES `eval_status` WRITE;
 /*!40000 ALTER TABLE `eval_status` DISABLE KEYS */;
+INSERT INTO `eval_status` VALUES (202269420,2022432197,2601,'2022-12-03','afc84bde-aae0-442c-ba0c-db13bbf9d535');
 /*!40000 ALTER TABLE `eval_status` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -33,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 12:58:59
+-- Dump completed on 2022-12-03 17:52:05

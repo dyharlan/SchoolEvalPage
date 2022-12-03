@@ -16,12 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `classes`
+--
+
+DROP TABLE IF EXISTS `classes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `classes` (
+  `CLASS_CODE` int NOT NULL,
+  `CLASS_NAME` varchar(50) NOT NULL,
+  `TEACHERS_CODE` int NOT NULL,
+  PRIMARY KEY (`CLASS_CODE`),
+  KEY `TEACHERS_CODE` (`TEACHERS_CODE`),
+  CONSTRAINT `classes_ibfk_1` FOREIGN KEY (`TEACHERS_CODE`) REFERENCES `teachers` (`TEACHERS_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `classes`
 --
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (124,'1-CSA'),(125,'1-CSB'),(126,'1-CSC'),(127,'1-CSD'),(128,'1-CSE'),(129,'2-CSA');
+INSERT INTO `classes` VALUES (124,'1-CSA',2022432197),(125,'1-CSB',2022750511),(126,'1-CSC',2022987531),(127,'1-CSD',2022901211),(128,'1-CSE',2022123496),(129,'2-CSA',2022987531);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 12:58:59
+-- Dump completed on 2022-12-03 17:52:06

@@ -16,13 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `class_advisors`
+-- Table structure for table `person_status`
 --
 
-LOCK TABLES `class_advisors` WRITE;
-/*!40000 ALTER TABLE `class_advisors` DISABLE KEYS */;
-INSERT INTO `class_advisors` VALUES (128,2022123496),(124,2022432197),(125,2022750511),(127,2022901211),(126,2022987531),(129,2022987531);
-/*!40000 ALTER TABLE `class_advisors` ENABLE KEYS */;
+DROP TABLE IF EXISTS `person_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `person_status` (
+  `STATUS_CODE` int NOT NULL,
+  `STATUS_TYPE` varchar(30) NOT NULL,
+  PRIMARY KEY (`STATUS_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `person_status`
+--
+
+LOCK TABLES `person_status` WRITE;
+/*!40000 ALTER TABLE `person_status` DISABLE KEYS */;
+INSERT INTO `person_status` VALUES (1,'Active'),(2,'Inactive');
+/*!40000 ALTER TABLE `person_status` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -34,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 12:58:59
+-- Dump completed on 2022-12-03 17:52:05

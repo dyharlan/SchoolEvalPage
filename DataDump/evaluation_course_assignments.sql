@@ -16,12 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `course_assignments`
+--
+
+DROP TABLE IF EXISTS `course_assignments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `course_assignments` (
+  `COURSE_CODE` int NOT NULL,
+  `TEACHERS_CODE` int NOT NULL,
+  `CLASS_CODE` int NOT NULL,
+  UNIQUE KEY `COURSE_CODE` (`COURSE_CODE`,`CLASS_CODE`),
+  KEY `TEACHERS_CODE` (`TEACHERS_CODE`),
+  CONSTRAINT `course_assignments_ibfk_1` FOREIGN KEY (`TEACHERS_CODE`) REFERENCES `teachers` (`TEACHERS_CODE`),
+  CONSTRAINT `course_assignments_ibfk_2` FOREIGN KEY (`COURSE_CODE`) REFERENCES `course_offerings` (`COURSE_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `course_assignments`
 --
 
 LOCK TABLES `course_assignments` WRITE;
 /*!40000 ALTER TABLE `course_assignments` DISABLE KEYS */;
-INSERT INTO `course_assignments` VALUES (2601,2022123496,125),(2602,2022123496,124),(2602,2022123496,125),(2601,2022432197,124),(2605,2022750511,124),(2605,2022750511,125),(2604,2022901211,124),(2604,2022901211,125),(2603,2022987531,124),(2603,2022987531,125);
+INSERT INTO `course_assignments` VALUES (2602,2022123496,124),(2601,2022432197,124),(2605,2022750511,124),(2604,2022901211,124),(2603,2022987531,124);
 /*!40000 ALTER TABLE `course_assignments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 12:58:59
+-- Dump completed on 2022-12-03 17:52:05

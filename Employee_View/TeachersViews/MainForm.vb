@@ -178,4 +178,8 @@ Public Class MainForm
     Private Sub tsLogOut_Click(sender As Object, e As EventArgs) Handles tsLogOut.Click
         logOut()
     End Sub
+
+    Private Sub EvalStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EvalStatusToolStripMenuItem.Click
+        EvalScoreView.ShowDialog()
+    End Sub
 End Class

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A006051-7BEA-4DB9-83B4-9150FAC8F62D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>TeachersViews.My.MyApplication</StartupObject>
+    <RootNamespace>TeachersViews</RootNamespace>
+    <AssemblyName>TeachersViews</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TeachersViews.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>TeachersViews.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.19.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.31.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.31\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.31\lib\net452\ZstdNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassAssignmentDetail.Designer.vb">
+      <DependentUpon>ClassAssignmentDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClassAssignmentDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="class\CourseAssignment.vb" />
+    <Compile Include="CourseAssignmentDetail.Designer.vb">
+      <DependentUpon>CourseAssignmentDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CourseAssignmentDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="class\ClassAssignment.vb" />
+    <Compile Include="class\Course.vb" />
+    <Compile Include="class\Db.vb" />
+    <Compile Include="class\Department.vb" />
+    <Compile Include="class\Person.vb" />
+    <Compile Include="class\SchoolClass.vb" />
+    <Compile Include="class\Student.vb" />
+    <Compile Include="class\SubMain.vb" />
+    <Compile Include="class\Teacher.vb" />
+    <Compile Include="Course_List.Designer.vb">
+      <DependentUpon>Course_List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Course_List.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBConnectionDetail.Designer.vb">
+      <DependentUpon>DBConnectionDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DBConnectionDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorScreen.Designer.vb">
+      <DependentUpon>ErrorScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvalScoreView.Designer.vb">
+      <DependentUpon>EvalScoreView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EvalScoreView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn.Designer.vb">
+      <DependentUpon>LogIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="module\Main.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Class_Detail.Designer.vb">
+      <DependentUpon>Class_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Class_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class_List.Designer.vb">
+      <DependentUpon>Class_List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Class_List.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Department_Detail.Designer.vb">
+      <DependentUpon>Department_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Department_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Course_Detail.Designer.vb">
+      <DependentUpon>Course_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Course_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacher_List.Designer.vb">
+      <DependentUpon>Teacher_List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_List.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacher_Detail.Designer.vb">
+      <DependentUpon>Teacher_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentDetail.Designer.vb">
+      <DependentUpon>StudentDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudentDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_List.Designer.vb">
+      <DependentUpon>Student_List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Student_List.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewOption.Designer.vb">
+      <DependentUpon>ViewOption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOption.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClassAssignmentDetail.resx">
+      <DependentUpon>ClassAssignmentDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CourseAssignmentDetail.resx">
+      <DependentUpon>CourseAssignmentDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Course_List.resx">
+      <DependentUpon>Course_List.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBConnectionDetail.resx">
+      <DependentUpon>DBConnectionDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorScreen.resx">
+      <DependentUpon>ErrorScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvalScoreView.resx">
+      <DependentUpon>EvalScoreView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn.resx">
+      <DependentUpon>LogIn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class_Detail.resx">
+      <DependentUpon>Class_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class_List.resx">
+      <DependentUpon>Class_List.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Department_Detail.resx">
+      <DependentUpon>Department_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Course_Detail.resx">
+      <DependentUpon>Course_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher_List.resx">
+      <DependentUpon>Teacher_List.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher_Detail.resx">
+      <DependentUpon>Teacher_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentDetail.resx">
+      <DependentUpon>StudentDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_List.resx">
+      <DependentUpon>Student_List.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewOption.resx">
+      <DependentUpon>ViewOption.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

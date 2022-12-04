@@ -84,7 +84,7 @@
                     If result = True Then
                         CURRENT_ROLE = PERSON_ROLE.teacher
                         MainForm.tsUser.Text = CURRENT_USER
-                        MainForm.isMenuEnabled(True)
+                        MainForm.teacherMenu()
                         Me.Close()
                     Else
                         MsgBox("Access Denied!")
@@ -100,7 +100,7 @@
                         MainForm.tsUser.Text = "Administrator"
 
                         MainForm.ToolStripMenuItem1.Enabled = True
-                        MainForm.isMenuEnabled(True)
+                        MainForm.adminMenu()
                         Me.Close()
 
                     Else

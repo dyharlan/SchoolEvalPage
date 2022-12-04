@@ -175,4 +175,16 @@ Public Class Department_Detail
         Me.txtDeptName.SelectAll()
         Me.txtDeptName.Focus()
     End Sub
+
+    Private Sub Department_Detail_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            btnDelete.Enabled = True
+            btnEdit.Enabled = True
+            btnNew.Enabled = True
+        Else
+            btnDelete.Enabled = False
+            btnEdit.Enabled = False
+            btnNew.Enabled = False
+        End If
+    End Sub
 End Class

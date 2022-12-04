@@ -126,20 +126,32 @@ Public Class Teacher_Detail
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         If save() Then
-            addNew()
+            If CURRENT_ROLE = PERSON_ROLE.admin Then
+                addNew()
+            Else
+                MsgBox("ACCESS DENIED!", MsgBoxStyle.Critical)
+            End If
+
         End If
 
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        If addFlag = False Then
-            If MsgBox("Do yo want to delete " & _teacher.LastName1 & "," & _teacher.FirstName1 & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                HasChanges1 = _teacher.updateStatus(_teacher.PersonId1, 2) '_teacher.delete()
-                If HasChanges1 Then
-                    Me.Close()
+
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            If addFlag = False Then
+                If MsgBox("Do yo want to delete " & _teacher.LastName1 & "," & _teacher.FirstName1 & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    HasChanges1 = _teacher.updateStatus(_teacher.PersonId1, 2) '_teacher.delete()
+                    If HasChanges1 Then
+                        Me.Close()
+                    End If
                 End If
             End If
+        Else
+            MsgBox("ACCESS DENIED!", MsgBoxStyle.Critical)
         End If
+
+
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
@@ -178,5 +190,17 @@ Public Class Teacher_Detail
         Dim departmentDet As New Department_Detail
         departmentDet.ShowDialog()
         loadDepartment()
+    End Sub
+
+    Private Sub Teacher_Detail_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            ToolStripButton1.Enabled = True
+            ToolStripButton2.Enabled = True
+            ToolStripButton4.Enabled = True
+        Else
+            ToolStripButton1.Enabled = False
+            ToolStripButton2.Enabled = False
+            ToolStripButton4.Enabled = False
+        End If
     End Sub
 End Class

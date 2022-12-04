@@ -44,6 +44,7 @@ Public Class DBConnectionDetail
         If testConnection() = 1 Then
             SERVER_NAME = Me.txtConnection.Text
             CONN_STATUS = SERVER_STATE.CONNECTED
+            MainForm.logOut()
             Me.Close()
         End If
     End Sub
@@ -108,7 +109,13 @@ Public Class DBConnectionDetail
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Me.Close()
+
+        If CONN_STATUS = SERVER_STATE.CONNECTED Then
+            Me.Close()
+        Else
+            Application.Exit()
+        End If
+
     End Sub
 
     Private Sub txtDatabase_TextChanged(sender As Object, e As EventArgs) Handles txtDatabase.TextChanged

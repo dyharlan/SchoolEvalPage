@@ -45,12 +45,19 @@
         Me.cmbDepartment.DataSource = departmentBs
     End Sub
 
+
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Dim teacherDetail As New Teacher_Detail
-        teacherDetail.addNew()
-        teacherDetail.ShowDialog()
-        If teacherDetail.HasChanges1 Then
-            loadList()
+
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            Dim teacherDetail As New Teacher_Detail
+            teacherDetail.addNew()
+            teacherDetail.ShowDialog()
+            If teacherDetail.HasChanges1 Then
+                loadList()
+            End If
+
+        Else
+                MsgBox("ACCESS DENIED!", MsgBoxStyle.Critical)
         End If
 
     End Sub
@@ -133,6 +140,18 @@
     End Sub
 
     Private Sub Person_List_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            ToolStripButton1.Enabled = True
+            ToolStripButton2.Enabled = True
+            ToolStripButton3.Enabled = True
+        Else
+            ToolStripButton1.Enabled = False
+            ToolStripButton2.Enabled = False
+            ToolStripButton3.Enabled = False
+        End If
+
         Me.txtSearch.Focus()
     End Sub
 
@@ -145,20 +164,26 @@
     End Sub
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        If teacherBS.Count > 0 Then
-            rowPosition = teacherBS.Position
-            Dim row = teacherBS.Current
 
-            If MsgBox("Do yo want to delete " & row.item("LNAME") & "," & row.item("FNAME") & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim teacher As New Teacher
-                teacher.PersonId1 = row.item("PERSON_ID")
-                Dim result = teacher.updateStatus(teacher.PersonId1, 2) 'teacher.delete()
-                If result Then
-                    teacherBS.RemoveCurrent()
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+
+            If teacherBS.Count > 0 Then
+                rowPosition = teacherBS.Position
+                Dim row = teacherBS.Current
+
+                If MsgBox("Do yo want to delete " & row.item("LNAME") & "," & row.item("FNAME") & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    Dim teacher As New Teacher
+                    teacher.PersonId1 = row.item("PERSON_ID")
+                    Dim result = teacher.updateStatus(teacher.PersonId1, 2) 'teacher.delete()
+                    If result Then
+                        teacherBS.RemoveCurrent()
+                    End If
                 End If
+            Else
+                MsgBox("Teachers list is empty.", MsgBoxStyle.Critical)
             End If
         Else
-            MsgBox("Teachers list is empty.", MsgBoxStyle.Critical)
+            MsgBox("ACCESS DENIED!", MsgBoxStyle.Critical)
         End If
     End Sub
 End Class

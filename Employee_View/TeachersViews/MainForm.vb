@@ -98,14 +98,16 @@ Public Class MainForm
                 MsgBox("Student is restricted.", MsgBoxStyle.Critical)
             Case 2
                 ToolStripMenuItem1.Enabled = False
+                teacherMenu()
             Case 3
                 ToolStripMenuItem1.Enabled = True
+                adminMenu()
         End Select
 
         ToolStrip1.Visible = True
     End Sub
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+        isMenuEnabled(False)
         If isServerConnected() = False Then
             Return
         End If
@@ -118,17 +120,39 @@ Public Class MainForm
         db.getMySqlConnection()
         If CONN_STATUS = SERVER_STATE.CONNECTED Then
             Me.lblConnStatus.Text = "Connected"
+            logOut()
         Else
             Me.lblConnStatus.Text = "Disconnected"
             Dim conDetail As New DBConnectionDetail
             conDetail.MdiParent = Me
             conDetail.Show()
 
-
-
         End If
         Return CONN_STATUS
     End Function
+    Sub teacherMenu()
+        Me.tsCourse.Enabled = True
+        Me.tsSetting.Enabled = False
+        Me.tsStudent.Enabled = True
+        Me.tsTeacher.Enabled = True
+        Me.tsDepartment.Enabled = True
+        Me.tsClass.Enabled = True
+        Me.tsEvaluation.Enabled = True
+        Me.tsLogOut.Enabled = True
+        AddNewCourseToolStripMenuItem.Enabled = False
+    End Sub
+    Sub adminMenu()
+        Me.tsSetting.Enabled = True
+        Me.tsStudent.Enabled = True
+        Me.tsTeacher.Enabled = True
+        Me.tsDepartment.Enabled = True
+        Me.tsClass.Enabled = True
+        Me.tsCourse.Enabled = True
+        Me.tsEvaluation.Enabled = True
+        Me.tsLogOut.Enabled = True
+        AddNewCourseToolStripMenuItem.Enabled = True
+    End Sub
+
     Sub isMenuEnabled(val As Boolean)
         Me.tsSetting.Enabled = val
         Me.tsStudent.Enabled = val
@@ -140,7 +164,7 @@ Public Class MainForm
         Me.tsLogOut.Enabled = val
     End Sub
 
-    Sub logOut()
+    Public Sub logOut()
         isMenuEnabled(False)
         ToolStripMenuItem1.Enabled = False
         Me.tsUser.Text = Nothing

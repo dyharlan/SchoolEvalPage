@@ -32,6 +32,8 @@ Partial Class Course_List
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.COURSECODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COURSENAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.cmbSearchCriteria = New System.Windows.Forms.ComboBox()
@@ -40,8 +42,6 @@ Partial Class Course_List
         Me.cmbRolefilter = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.COURSECODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COURSENAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -120,6 +120,20 @@ Partial Class Course_List
         Me.DataGridView1.Size = New System.Drawing.Size(565, 337)
         Me.DataGridView1.TabIndex = 1
         '
+        'COURSECODE
+        '
+        Me.COURSECODE.DataPropertyName = "COURSE_CODE"
+        Me.COURSECODE.HeaderText = "COURSE CODE"
+        Me.COURSECODE.Name = "COURSECODE"
+        Me.COURSECODE.ReadOnly = True
+        '
+        'COURSENAME
+        '
+        Me.COURSENAME.DataPropertyName = "COURSE_NAME"
+        Me.COURSENAME.HeaderText = "COURSE NAME"
+        Me.COURSENAME.Name = "COURSENAME"
+        Me.COURSENAME.ReadOnly = True
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
@@ -146,7 +160,6 @@ Partial Class Course_List
         '
         'cmbSearchCriteria
         '
-        Me.cmbSearchCriteria.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbSearchCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSearchCriteria.FormattingEnabled = True
         Me.cmbSearchCriteria.Items.AddRange(New Object() {"ID", "LAST NAME", "MIDDLE NAME", "FIRST NAME"})
@@ -200,20 +213,6 @@ Partial Class Course_List
         Me.txtSearch.Size = New System.Drawing.Size(152, 20)
         Me.txtSearch.TabIndex = 0
         '
-        'COURSECODE
-        '
-        Me.COURSECODE.DataPropertyName = "COURSE_CODE"
-        Me.COURSECODE.HeaderText = "COURSE CODE"
-        Me.COURSECODE.Name = "COURSECODE"
-        Me.COURSECODE.ReadOnly = True
-        '
-        'COURSENAME
-        '
-        Me.COURSENAME.DataPropertyName = "COURSE_NAME"
-        Me.COURSENAME.HeaderText = "COURSE NAME"
-        Me.COURSENAME.Name = "COURSENAME"
-        Me.COURSENAME.ReadOnly = True
-        '
         'Course_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -225,7 +224,7 @@ Partial Class Course_List
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "Course_List"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Person_List"
+        Me.Text = "Course List"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()

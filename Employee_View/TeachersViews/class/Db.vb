@@ -32,7 +32,9 @@ Public Class Db
             CONN_STATUS = SERVER_STATE.CONNECTED
         Catch ex As MySql.Data.MySqlClient.MySqlException
             CONN_STATUS = SERVER_STATE.DISCONNECTED
-            MessageBox.Show(ex.Message)
+            Using form = New Form() With {.TopMost = True}
+                MessageBox.Show(form, ex.Message, "Database Server Connection Error")
+            End Using
         End Try
 
         Return conn

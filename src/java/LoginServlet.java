@@ -134,8 +134,9 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("STU_NUM", stu_num);
                 session.setAttribute("STU_NAME", stu_name);
                 
-                dispatcher = request.getRequestDispatcher("eval.jsp");
-                dispatcher.forward(request,response);
+                //dispatcher = request.getRequestDispatcher("eval.jsp");
+                //dispatcher.forward(request,response);
+                response.sendRedirect("eval.jsp");
             }
         }
         catch(SQLException sqle){

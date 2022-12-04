@@ -16,7 +16,7 @@ label {
     margin-left: 5px;
 }
 
-legend {
+legend,.strip {
     background-color: #f4bb00;
 }
 
@@ -33,4 +33,13 @@ input[type="submit"] {
 
 h1 {
     margin-left: 15px;
+}
+
+main {
+    min-height: calc(100vh - 50px);
+    background-color: #efefef;
+}
+
+.strip {
+    text-align: center;
 }

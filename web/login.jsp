@@ -23,12 +23,25 @@
             if(session.getAttribute("STU_NUM") != null)
                 response.sendRedirect("eval.jsp");
         %>
-        <form action="Login" METHOD="POST">
-            <pre>
-                Enter: <input type="text" name="userid"><br>
-                <!-- <Enter Password: <input type="password" name="password"> --><br>
-                <input type="submit" Value="Login">
-            </pre>
-        </form>
+        <main>
+            <div class="form-container">
+                <div class="login-form">
+                    <form action="Login" METHOD="POST"> 
+                        <label for="userid">Enter Student No.: </label><input id="userid" type="text" name="userid" required><br>
+                        <br>
+                        <input type="submit" Value="Login"> 
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="strip">
+                <p>
+                    Copyright 2022, Cassandro Systems, Ltd.
+                    <br>
+                    This page only serves a purpose for systems evaluation and is not representative of the final product.
+                </p>
+            </div>
+        </footer>
     </body>
 </html>

@@ -23,30 +23,39 @@
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //http 1.1+
             response.setHeader("Pragma", "no-cache"); //http 1.0
             response.setHeader("Expires", "0"); //for proxy
-            if(session.getAttribute("STU_NUM") == null)
+            if (session.getAttribute("STU_NUM") == null)
                 response.sendRedirect("login.jsp");
         %>
-        <h1>Hello ${STU_NUM}, ${STU_NAME}!</h1>
-        
-<!--            <table>
-            <tr>
-                <th>Class Code</th>
-                <th>Teacher Code</th>
-                <th>Course Code</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Birth</th>
-            </tr>
-             
-            </table>-->
-<!--             <h2>Evaluated teachers:</h2>-->
+        <main>
+            <nav id="navbar">
+
+                <ul>
+                    <li><h1>Hello ${STU_NUM}, ${STU_NAME}!</h1></li>
+                </ul>
+                <ul class="pull-right">
+                    <li><form action="Logout"> 
+                            <input type="submit" Value="Logout"> 
+                        </form></li>
+                </ul>
+            </nav>
+            
+            <div class="container">
+                <h2>Course Teachers for evaluation:</h2>
                 ${evaluated_teachers}
-<!--             <h2>Unevaluated teachers:</h2>-->
-                <p>${unevaluated_teachers}</p>
-        <form action="Logout" >
-            <pre>
-                <input type="submit" Value="Logout">
-            </pre>
-        </form>
+                ${unevaluated_teachers}
+            </div>
+
+
+
+        </main>
+        <footer>
+            <div class="strip">
+                <p>
+                    Copyright 2022, Cassandro Systems, Ltd.
+                    <br>
+                    This page only serves a purpose for systems evaluation and is not representative of the final product.
+                </p>
+            </div>
+        </footer>
     </body>
 </html>

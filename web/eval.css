@@ -12,5 +12,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 * {
     scroll-behavior: smooth;
     margin: 0;
+    padding: 0;
     font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  white-space: normal;
+  display: inline-block;
+  overflow: hidden;
+}
+nav ul li {
+  display: inline-block;
+  white-space: nowrap;
+}
+nav ul{
+  display: inline-block;
+}
+
+.pull-right{
+    float: right!important;
+}
+    
+
+.strip,#navbar {
+    background-color: #f4bb00;
+    text-align: center;
+}
+
+main {
+    min-height: calc(100vh - 50px);
+    background-color: #efefef;
 }

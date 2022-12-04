@@ -49,3 +49,6 @@ p{
 p.error {
     margin-top: 10px;
 }
+.login-form input[type="submit"]{
+    padding:2%;
+}

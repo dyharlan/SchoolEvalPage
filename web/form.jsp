@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Form Page</title>
+        <title>JSP Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="form.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //http 1.1+
             response.setHeader("Pragma", "no-cache"); //http 1.0
             response.setHeader("Expires", "0"); //for proxy
-            if (session.getAttribute("STU_NUM") == null) //if one tries to access this page illegally, redirects to login page
+            if (session.getAttribute("STU_NUM") == null)
                 response.sendRedirect("login.jsp");
         %>
         <main>

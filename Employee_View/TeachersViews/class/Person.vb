@@ -143,7 +143,7 @@ Public Class Person
             Dim sqlCommand As New MySqlCommand
             sqlCommand.Connection = conn
             sqlCommand.CommandText = sql.ToString
-            ' sqlCommand.Parameters.AddWithValue("@personId", Me.PersonId1)
+
             sqlCommand.Parameters.AddWithValue("@fname", Me.FirstName1)
             sqlCommand.Parameters.AddWithValue("@mname", Me.MiddleName1)
             sqlCommand.Parameters.AddWithValue("@lname", Me.LastName1)

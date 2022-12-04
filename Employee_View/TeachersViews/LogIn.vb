@@ -83,6 +83,7 @@
                     End If
                     Dim result As Boolean = teacher.isTeacherCodeExist(txtCode.Text)
                     If result = True Then
+                        EvalScoreView.holder2 = txtCode.Text
                         CURRENT_ROLE = PERSON_ROLE.teacher
                         MainForm.tsUser.Text = CURRENT_USER
                         MainForm.teacherMenu()

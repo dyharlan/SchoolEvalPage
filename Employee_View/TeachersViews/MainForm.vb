@@ -212,8 +212,6 @@ Public Class MainForm
     End Sub
 
     Private Sub EvalStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EvalStatusToolStripMenuItem.Click
-        Dim scoreView As New EvalScoreView
-        scoreView.MdiParent = Me
-        scoreView.Show()
+        EvalScoreView.ShowDialog()
     End Sub
 End Class

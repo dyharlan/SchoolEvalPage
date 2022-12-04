@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Please select a teacher to evaluate</title>
+        <title>Please select a teacher to evaluate | Evaluation Page</title>
         <link rel="stylesheet" href="eval.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,10 +39,17 @@
                 </ul>
             </nav>
             
+            <div class="student-info">
+                <div class="content"><h2>Name: </h2><p>${STU_NAME}</p></div>
+                <div class="content"><h2>Student Number: </h2><p>${STU_NUM}</p></div>
+            </div>
+                
             <div class="container">
-                <h2>Course Teachers for evaluation:</h2>
-                ${evaluated_teachers}
-                ${unevaluated_teachers}
+                <div class="content header"><h2>Course Teachers for Evaluation:</h2></div>
+                <div class="content subhead"><h3>Evaluated Teachers</h3></div>
+                <div class="content eval">${evaluated_teachers}</div>
+                <div class="content subhead"><h3>Unevaluated Teachers</h3></div>
+                <div class="content">${unevaluated_teachers}</div>
             </div>
 
 

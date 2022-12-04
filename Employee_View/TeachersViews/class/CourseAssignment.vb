@@ -149,6 +149,9 @@ Public Class CourseAssignment
             sql.Append(" JOIN " & TABLE_TEACHERS & " c ON c.TEACHERS_CODE=b.TEACHERS_CODE")
             sql.Append(" JOIN " & TABLE_PERSONS & " d ON d.PERSON_ID=c.PERSON_ID")
             sql.Append(" JOIN " & TABLE_COURSE_OFFERINGS & " e ON e.COURSE_CODE=a.COURSE_CODE")
+            If CURRENT_ROLE = PERSON_ROLE.teacher Then
+                sql.Append(" WHERE c.TEACHERS_CODE ='" & CURRENT_TEACHER_CODE & "' ")
+            End If
             sql.Append(" ORDER BY b.CLASS_NAME asc")
 
             Dim da As New MySqlDataAdapter(sql.ToString, conn)

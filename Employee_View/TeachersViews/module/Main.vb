@@ -17,6 +17,7 @@
     Public Const TABLE_PERSON_STATUS = "person_status"
     Public CURRENT_ROLE As Integer = 0
     Public CURRENT_USER As String = Nothing
+    Public CURRENT_TEACHER_CODE As Integer = 0
     Public CONN_STATUS As Boolean = False
 
 

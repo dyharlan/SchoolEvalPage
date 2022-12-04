@@ -67,6 +67,7 @@ Public Class Teacher
             TeacherCode1 = rd.GetString(1)
             Me.DeptId1 = rd.GetInt32(2)
             CURRENT_USER = rd.GetString(3)
+            CURRENT_TEACHER_CODE = rd.GetString(1)
         End If
         rd.Close()
 

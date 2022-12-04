@@ -147,6 +147,7 @@ Partial Class DBConnectionDetail
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(214, 20)
         Me.txtUser.TabIndex = 12
+        Me.txtUser.Text = "root"
         '
         'Label4
         '
@@ -215,6 +216,7 @@ Partial Class DBConnectionDetail
         Me.txtDatabase.Name = "txtDatabase"
         Me.txtDatabase.Size = New System.Drawing.Size(214, 20)
         Me.txtDatabase.TabIndex = 18
+        Me.txtDatabase.Text = "evaluation"
         '
         'DBConnectionDetail
         '

@@ -58,18 +58,61 @@ Public Class StudentDetail
         Dim _middleName As String = Trim(Me.txtMname.Text)
         Dim _lastName As String = Trim(Me.txtLname.Text)
         Dim _dob As Date = Me.dtpDOB.Value
-        Dim _studNum As Integer = Trim(Me.txtStudNum.Text)
-        Dim _yrStarted As Integer = Trim(Me.txtYrStarted.Text)
+        Dim _studNum As String = Trim(Me.txtStudNum.Text)
+        Dim _yrStarted As String = Trim(Me.txtYrStarted.Text)
 
         HasChanges1 = 0
 
-        'If IsNumeric(_txtId) = False Then
-        '    ErrorProvider1.SetError(txtId, "Invalid Person Id.")
-        '    Me.txtId.Focus()
-        '    Return 0
-        'Else
-        '    ErrorProvider1.SetError(txtId, "")
-        'End If
+        If _firstName = Nothing Then
+            ErrorProvider1.SetError(Me.txtFname, "First Name cannot be empty.")
+            Me.txtFname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtFname, "")
+        End If
+
+        If _middleName = Nothing Then
+            ErrorProvider1.SetError(Me.txtMname, "Middle Name cannot be empty.")
+            Me.txtMname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtMname, "")
+        End If
+
+        If _lastName = Nothing Then
+            ErrorProvider1.SetError(Me.txtLname, "Last Name cannot be empty.")
+            Me.txtLname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtLname, "")
+        End If
+
+        If IsNumeric(_studNum) = False Then
+            ErrorProvider1.SetError(Me.txtStudNum, "Invalid Student Number.")
+            Me.txtStudNum.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtStudNum, "")
+        End If
+
+        If IsDate(_dob) = False Then
+            ErrorProvider1.SetError(Me.dtpDOB, "Invalid Data of Birth")
+            Me.dtpDOB.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.dtpDOB, "")
+        End If
+
+        If IsNumeric(_yrStarted) = False Then
+            ErrorProvider1.SetError(Me.txtYrStarted, "Invalid Year Started.")
+            Me.txtYrStarted.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtYrStarted, "")
+        End If
+
+
+
         Dim result As Integer
 
         Dim student As New Student

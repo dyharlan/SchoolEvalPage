@@ -63,19 +63,44 @@ Public Class Teacher_Detail
         Dim _firstName As String = Me.txtFname.Text
         Dim _middleName As String = Trim(Me.txtMname.Text)
         Dim _lastName As String = Trim(Me.txtLname.Text)
-        Dim _teacherCode As Integer = Trim(Me.txtTeacherCode.Text)
+        Dim _teacherCode As String = Trim(Me.txtTeacherCode.Text)
         Dim _dob As Date = Me.dtpDOB.Value
         Dim _departmentID As Integer = Me.cmbDepartment.SelectedValue
 
         HasChanges1 = 0
 
-        'If IsNumeric(_txtId) = False Then
-        '    ErrorProvider1.SetError(txtId, "Invalid Person Id.")
-        '    Me.txtId.Focus()
-        '    Return 0
-        'Else
-        '    ErrorProvider1.SetError(txtId, "")
-        'End If
+
+        If _firstName = Nothing Then
+            ErrorProvider1.SetError(Me.txtFname, "First Name cannot be empty.")
+            Me.txtFname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtFname, "")
+        End If
+
+        If _middleName = Nothing Then
+            ErrorProvider1.SetError(Me.txtMname, "Middle Name cannot be empty.")
+            Me.txtMname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtMname, "")
+        End If
+
+        If _lastName = Nothing Then
+            ErrorProvider1.SetError(Me.txtLname, "Last Name cannot be empty.")
+            Me.txtLname.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtLname, "")
+        End If
+
+        If _teacherCode = Nothing Then
+            ErrorProvider1.SetError(Me.txtTeacherCode, "Invalid Teachers Code.")
+            Me.txtTeacherCode.Focus()
+            Return 0
+        Else
+            ErrorProvider1.SetError(Me.txtTeacherCode, "")
+        End If
 
 
         Dim result As Integer

@@ -202,8 +202,8 @@ Partial Class MainForm
         'EvalStatusToolStripMenuItem
         '
         Me.EvalStatusToolStripMenuItem.Name = "EvalStatusToolStripMenuItem"
-        Me.EvalStatusToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
-        Me.EvalStatusToolStripMenuItem.Text = "Eval Status"
+        Me.EvalStatusToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EvalStatusToolStripMenuItem.Text = "Evaluation Results"
         '
         'tsLogOut
         '
@@ -266,41 +266,41 @@ Partial Class MainForm
         '
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CreateDatabaseToolStripMenuItem, Me.ToolStripSeparator1, Me.BackupToolStripMenuItem, Me.RestoreToolStripMenuItem, Me.ToolStripSeparator2, Me.ConnectionConfigToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(122, 22)
         Me.ToolStripMenuItem1.Text = "Database"
         '
         'CreateDatabaseToolStripMenuItem
         '
         Me.CreateDatabaseToolStripMenuItem.Name = "CreateDatabaseToolStripMenuItem"
-        Me.CreateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CreateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.CreateDatabaseToolStripMenuItem.Text = "Create Database"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(172, 6)
         '
         'BackupToolStripMenuItem
         '
         Me.BackupToolStripMenuItem.Name = "BackupToolStripMenuItem"
-        Me.BackupToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BackupToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.BackupToolStripMenuItem.Text = "Backup "
         '
         'RestoreToolStripMenuItem
         '
         Me.RestoreToolStripMenuItem.Name = "RestoreToolStripMenuItem"
-        Me.RestoreToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RestoreToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.RestoreToolStripMenuItem.Text = "Restore"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(172, 6)
         '
         'ConnectionConfigToolStripMenuItem
         '
         Me.ConnectionConfigToolStripMenuItem.Name = "ConnectionConfigToolStripMenuItem"
-        Me.ConnectionConfigToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ConnectionConfigToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.ConnectionConfigToolStripMenuItem.Text = "Connection Config"
         '
         'AboutToolStripMenuItem

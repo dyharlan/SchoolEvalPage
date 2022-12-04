@@ -55,6 +55,7 @@ Public Class DBConnectionDetail
             Dim _host As String = Trim(Me.txtHost.Text)
             Dim _user As String = Trim(Me.txtUser.Text)
             Dim _pass As String = Trim(Me.txtPassword.Text)
+            Dim _dbase As String = Trim(Me.txtDatabase.Text)
             Dim _port As String = Trim(Me.txtPort.Text)
 
             If IsNumeric(_port) = False Then
@@ -71,7 +72,7 @@ Public Class DBConnectionDetail
             str.Append("server=").Append(_host)
             str.Append(";user=").Append(_user)
             str.Append(";password=").Append(_pass)
-            str.Append(";database=").Append(DATABASE_NAME)
+            str.Append(";database=").Append(_dbase)
             str.Append(";port=").Append(_port)
             str.Append(";")
 
@@ -108,5 +109,9 @@ Public Class DBConnectionDetail
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
+    End Sub
+
+    Private Sub txtDatabase_TextChanged(sender As Object, e As EventArgs) Handles txtDatabase.TextChanged
+        createConnectionString()
     End Sub
 End Class

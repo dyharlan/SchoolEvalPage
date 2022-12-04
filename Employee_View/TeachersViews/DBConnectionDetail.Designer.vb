@@ -38,13 +38,16 @@ Partial Class DBConnectionDetail
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtDatabase = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtConnection
         '
-        Me.txtConnection.Location = New System.Drawing.Point(33, 237)
+        Me.txtConnection.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtConnection.Location = New System.Drawing.Point(33, 293)
         Me.txtConnection.Multiline = True
         Me.txtConnection.Name = "txtConnection"
         Me.txtConnection.ReadOnly = True
@@ -53,7 +56,8 @@ Partial Class DBConnectionDetail
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(33, 337)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(33, 393)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(147, 36)
         Me.Button1.TabIndex = 1
@@ -62,7 +66,8 @@ Partial Class DBConnectionDetail
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(483, 369)
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Location = New System.Drawing.Point(483, 425)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(111, 44)
         Me.Button2.TabIndex = 2
@@ -71,8 +76,9 @@ Partial Class DBConnectionDetail
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(30, 221)
+        Me.Label1.Location = New System.Drawing.Point(30, 277)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 13)
         Me.Label1.TabIndex = 3
@@ -80,7 +86,8 @@ Partial Class DBConnectionDetail
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(329, 369)
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button3.Location = New System.Drawing.Point(329, 425)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(148, 44)
         Me.Button3.TabIndex = 4
@@ -160,7 +167,7 @@ Partial Class DBConnectionDetail
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(74, 106)
+        Me.Label5.Location = New System.Drawing.Point(74, 133)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 13)
         Me.Label5.TabIndex = 17
@@ -168,7 +175,7 @@ Partial Class DBConnectionDetail
         '
         'txtPort
         '
-        Me.txtPort.Location = New System.Drawing.Point(110, 106)
+        Me.txtPort.Location = New System.Drawing.Point(110, 133)
         Me.txtPort.Name = "txtPort"
         Me.txtPort.Size = New System.Drawing.Size(85, 20)
         Me.txtPort.TabIndex = 16
@@ -176,6 +183,8 @@ Partial Class DBConnectionDetail
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.txtDatabase)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtPort)
         Me.GroupBox1.Controls.Add(Me.txtHost)
@@ -186,16 +195,32 @@ Partial Class DBConnectionDetail
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Location = New System.Drawing.Point(33, 76)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(560, 142)
+        Me.GroupBox1.Size = New System.Drawing.Size(560, 185)
         Me.GroupBox1.TabIndex = 18
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Connection Detail"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(50, 107)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(56, 13)
+        Me.Label7.TabIndex = 19
+        Me.Label7.Text = "Database:"
+        '
+        'txtDatabase
+        '
+        Me.txtDatabase.Location = New System.Drawing.Point(110, 107)
+        Me.txtDatabase.Name = "txtDatabase"
+        Me.txtDatabase.Size = New System.Drawing.Size(214, 20)
+        Me.txtDatabase.TabIndex = 18
         '
         'DBConnectionDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(616, 425)
+        Me.ClientSize = New System.Drawing.Size(616, 481)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label1)
@@ -234,4 +259,6 @@ Partial Class DBConnectionDetail
     Friend WithEvents Label5 As Label
     Friend WithEvents txtPort As TextBox
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtDatabase As TextBox
 End Class

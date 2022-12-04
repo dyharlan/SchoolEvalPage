@@ -158,7 +158,7 @@
                 End If
             End If
         Else
-            MsgBox("Student list is empty.", "Delete")
+            MsgBox("Teachers list is empty.", MsgBoxStyle.Critical)
         End If
     End Sub
 End Class

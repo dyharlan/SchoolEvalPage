@@ -32,9 +32,15 @@ Partial Class Teacher_List
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TEACHERCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LASTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FIRSTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MIDDLENAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DEPARTMENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DEPTID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tsTotal = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -46,14 +52,7 @@ Partial Class Teacher_List
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TEACHERCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LASTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FIRSTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MIDDLENAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DEPARTMENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DEPTID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -63,7 +62,7 @@ Partial Class Teacher_List
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripSeparator3, Me.ToolStripButton4, Me.ToolStripSeparator4, Me.ToolStripButton5, Me.ToolStripButton6})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripSeparator3, Me.ToolStripButton4, Me.ToolStripSeparator4, Me.ToolStripButton6})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 30)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(748, 25)
@@ -122,22 +121,6 @@ Partial Class Teacher_List
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(107, 22)
-        Me.ToolStripButton5.Text = "Add Evaluation"
-        '
-        'ToolStripButton6
-        '
-        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
-        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(115, 22)
-        Me.ToolStripButton6.Text = "View Evaluations"
-        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -154,6 +137,63 @@ Partial Class Teacher_List
         Me.DataGridView1.RowTemplate.Height = 35
         Me.DataGridView1.Size = New System.Drawing.Size(724, 380)
         Me.DataGridView1.TabIndex = 1
+        '
+        'ID
+        '
+        Me.ID.DataPropertyName = "PERSON_ID"
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        '
+        'TEACHERCODE
+        '
+        Me.TEACHERCODE.DataPropertyName = "TEACHERS_CODE"
+        Me.TEACHERCODE.HeaderText = "CODE"
+        Me.TEACHERCODE.Name = "TEACHERCODE"
+        Me.TEACHERCODE.ReadOnly = True
+        '
+        'LASTNAME
+        '
+        Me.LASTNAME.DataPropertyName = "LNAME"
+        Me.LASTNAME.HeaderText = "LAST NAME"
+        Me.LASTNAME.Name = "LASTNAME"
+        Me.LASTNAME.ReadOnly = True
+        '
+        'FIRSTNAME
+        '
+        Me.FIRSTNAME.DataPropertyName = "FNAME"
+        Me.FIRSTNAME.HeaderText = "FIRST NAME"
+        Me.FIRSTNAME.Name = "FIRSTNAME"
+        Me.FIRSTNAME.ReadOnly = True
+        '
+        'MIDDLENAME
+        '
+        Me.MIDDLENAME.DataPropertyName = "MNAME"
+        Me.MIDDLENAME.HeaderText = "MIDDLE NAME"
+        Me.MIDDLENAME.Name = "MIDDLENAME"
+        Me.MIDDLENAME.ReadOnly = True
+        '
+        'DOB
+        '
+        Me.DOB.DataPropertyName = "DOB"
+        Me.DOB.HeaderText = "DATE OF BIRTH"
+        Me.DOB.Name = "DOB"
+        Me.DOB.ReadOnly = True
+        '
+        'DEPARTMENT
+        '
+        Me.DEPARTMENT.DataPropertyName = "DEPT_NAME"
+        Me.DEPARTMENT.HeaderText = "DEPARTMENT"
+        Me.DEPARTMENT.Name = "DEPARTMENT"
+        Me.DEPARTMENT.ReadOnly = True
+        '
+        'DEPTID
+        '
+        Me.DEPTID.DataPropertyName = "DEPT_ID"
+        Me.DEPTID.HeaderText = "DEPT ID"
+        Me.DEPTID.Name = "DEPTID"
+        Me.DEPTID.ReadOnly = True
+        Me.DEPTID.Visible = False
         '
         'StatusStrip1
         '
@@ -264,62 +304,13 @@ Partial Class Teacher_List
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "TEACHER LIST"
         '
-        'ID
+        'ToolStripButton6
         '
-        Me.ID.DataPropertyName = "PERSON_ID"
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.ReadOnly = True
-        '
-        'TEACHERCODE
-        '
-        Me.TEACHERCODE.DataPropertyName = "TEACHERS_CODE"
-        Me.TEACHERCODE.HeaderText = "CODE"
-        Me.TEACHERCODE.Name = "TEACHERCODE"
-        Me.TEACHERCODE.ReadOnly = True
-        '
-        'LASTNAME
-        '
-        Me.LASTNAME.DataPropertyName = "LNAME"
-        Me.LASTNAME.HeaderText = "LAST NAME"
-        Me.LASTNAME.Name = "LASTNAME"
-        Me.LASTNAME.ReadOnly = True
-        '
-        'FIRSTNAME
-        '
-        Me.FIRSTNAME.DataPropertyName = "FNAME"
-        Me.FIRSTNAME.HeaderText = "FIRST NAME"
-        Me.FIRSTNAME.Name = "FIRSTNAME"
-        Me.FIRSTNAME.ReadOnly = True
-        '
-        'MIDDLENAME
-        '
-        Me.MIDDLENAME.DataPropertyName = "MNAME"
-        Me.MIDDLENAME.HeaderText = "MIDDLE NAME"
-        Me.MIDDLENAME.Name = "MIDDLENAME"
-        Me.MIDDLENAME.ReadOnly = True
-        '
-        'DOB
-        '
-        Me.DOB.DataPropertyName = "DOB"
-        Me.DOB.HeaderText = "DATE OF BIRTH"
-        Me.DOB.Name = "DOB"
-        Me.DOB.ReadOnly = True
-        '
-        'DEPARTMENT
-        '
-        Me.DEPARTMENT.DataPropertyName = "DEPT_NAME"
-        Me.DEPARTMENT.HeaderText = "DEPARTMENT"
-        Me.DEPARTMENT.Name = "DEPARTMENT"
-        Me.DEPARTMENT.ReadOnly = True
-        '
-        'DEPTID
-        '
-        Me.DEPTID.DataPropertyName = "DEPT_ID"
-        Me.DEPTID.HeaderText = "DEPT ID"
-        Me.DEPTID.Name = "DEPTID"
-        Me.DEPTID.ReadOnly = True
-        Me.DEPTID.Visible = False
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(115, 22)
+        Me.ToolStripButton6.Text = "View Evaluations"
         '
         'Teacher_List
         '
@@ -369,8 +360,6 @@ Partial Class Teacher_List
     Friend WithEvents Label6 As Label
     Friend WithEvents tsTotal As ToolStripStatusLabel
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents ToolStripButton5 As ToolStripButton
-    Friend WithEvents ToolStripButton6 As ToolStripButton
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents TEACHERCODE As DataGridViewTextBoxColumn
     Friend WithEvents LASTNAME As DataGridViewTextBoxColumn
@@ -379,4 +368,5 @@ Partial Class Teacher_List
     Friend WithEvents DOB As DataGridViewTextBoxColumn
     Friend WithEvents DEPARTMENT As DataGridViewTextBoxColumn
     Friend WithEvents DEPTID As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripButton6 As ToolStripButton
 End Class

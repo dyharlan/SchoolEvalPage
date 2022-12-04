@@ -30,6 +30,7 @@ Partial Class LogIn
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +44,7 @@ Partial Class LogIn
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(139, 185)
+        Me.Button1.Location = New System.Drawing.Point(139, 188)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(184, 51)
         Me.Button1.TabIndex = 2
@@ -118,12 +119,22 @@ Partial Class LogIn
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "TEACHERS VIEW LOGIN"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(282, 158)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(87, 13)
+        Me.Label2.TabIndex = 9
+        Me.Label2.Text = "Password: admin"
+        '
         'LogIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(467, 275)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.RadioButton3)
         Me.Controls.Add(Me.RadioButton2)
@@ -149,4 +160,5 @@ Partial Class LogIn
     Friend WithEvents RadioButton3 As RadioButton
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label6 As Label
+    Friend WithEvents Label2 As Label
 End Class

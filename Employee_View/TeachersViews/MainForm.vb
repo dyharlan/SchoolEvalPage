@@ -145,10 +145,13 @@ Public Class MainForm
         Me.tsLogOut.Enabled = True
         AddNewCourseToolStripMenuItem.Enabled = False
         AddNewClassToolStripMenuItem.Enabled = False
-        tsClass.Enabled = False
-        tsCourse.Enabled = False
-        tsTeacher.Enabled = False
-        tsDepartment.Enabled = False
+
+
+        'tsClass.Enabled = False
+        'tsCourse.Enabled = False
+        'tsTeacher.Enabled = False
+        'tsDepartment.Enabled = False
+
     End Sub
     Sub adminMenu()
         Me.tsSetting.Enabled = True
@@ -161,6 +164,7 @@ Public Class MainForm
         Me.tsLogOut.Enabled = True
         AddNewCourseToolStripMenuItem.Enabled = True
         AddNewClassToolStripMenuItem.Enabled = True
+
         tsClass.Enabled = True
         tsCourse.Enabled = True
         tsTeacher.Enabled = True

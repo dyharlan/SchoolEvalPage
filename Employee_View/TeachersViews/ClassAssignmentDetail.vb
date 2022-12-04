@@ -153,4 +153,12 @@ Public Class ClassAssignmentDetail
         Me.cmbClass.SelectedValue = 0
 
     End Sub
+
+    Private Sub ClassAssignmentDetail_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            Button1.Enabled = True
+        Else
+            Button1.Enabled = False
+        End If
+    End Sub
 End Class

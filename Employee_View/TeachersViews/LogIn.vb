@@ -60,6 +60,7 @@
     Sub login_verify()
 
         If Trim(Me.txtCode.Text) = Nothing Then
+            MsgBox("Code cannot be empty.", MsgBoxStyle.Critical)
             Return
         End If
         Try
@@ -87,7 +88,7 @@
                         MainForm.teacherMenu()
                         Me.Close()
                     Else
-                        MsgBox("Access Denied!")
+                        MsgBox("Access Denied!", MsgBoxStyle.Critical)
                         Me.txtCode.SelectAll()
                         Me.txtCode.Focus()
 

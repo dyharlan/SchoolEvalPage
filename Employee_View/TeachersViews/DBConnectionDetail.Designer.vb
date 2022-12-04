@@ -111,9 +111,9 @@ Partial Class DBConnectionDetail
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(6, 13)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(247, 24)
+        Me.Label6.Size = New System.Drawing.Size(383, 24)
         Me.Label6.TabIndex = 3
-        Me.Label6.Text = "TEACHERS VIEW LOGIN"
+        Me.Label6.Text = "DATABASE SERVER CONFIGURATION"
         '
         'txtHost
         '

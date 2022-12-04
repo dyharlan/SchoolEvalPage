@@ -27,11 +27,11 @@
             <div class="form-container">
                 <div class="login-form">
                     <form action="Login" METHOD="POST"> 
-                        <label for="userid">Enter Student No.: </label><input id="userid" type="text" name="userid" required><br>
+                        <label for="userid">Enter Student No.: </label><input id="userid" type="number" name="userid" required><br>
                         <br>
                         <input type="submit" Value="Login">
-                        <%  if (session.getAttribute("failure") != null) { %>
-                            <h2><%= session.getAttribute("failure")%></h2>
+                        <%  if (request.getAttribute("failure") != null) { %>
+                            <p><%= request.getAttribute("failure")%></p>
                         <%  } %> 
                     </form>
                 </div>
@@ -42,7 +42,7 @@
                 <p>
                     Copyright 2022, Cassandro Systems, Ltd.
                     <br>
-                    This page only serves a purpose for systems evaluation and is not representative of the final product.
+                    This page only serves a purpose meant for systems evaluation and is not representative of the final product.
                 </p>
             </div>
         </footer>

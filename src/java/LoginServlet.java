@@ -128,7 +128,7 @@ public class LoginServlet extends HttpServlet {
             conn.close();
             if(stu_num == null || !(student_id.equals(stu_num)) ){
                 dispatcher = request.getRequestDispatcher("login.jsp");
-                session.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
+                request.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
                 dispatcher.include(request,response);
             }
             else if(student_id.equals(stu_num)){   
@@ -137,8 +137,8 @@ public class LoginServlet extends HttpServlet {
                 
                 //dispatcher = request.getRequestDispatcher("eval.jsp");
                 //dispatcher.forward(request,response);
-                if (session.getAttribute("failure") != null)
-                    session.removeAttribute("failure");
+                if (request.getAttribute("failure") != null)
+                    request.removeAttribute("failure");
                 response.sendRedirect("eval.jsp");
             }
         }

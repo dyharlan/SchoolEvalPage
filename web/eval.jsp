@@ -53,7 +53,7 @@
                 <p>
                     Copyright 2022, Cassandro Systems, Ltd.
                     <br>
-                    This page only serves a purpose for systems evaluation and is not representative of the final product.
+                    This page only serves a purpose meant for systems evaluation and is not representative of the final product.
                 </p>
             </div>
         </footer>

@@ -41,3 +41,7 @@ main {
     background-image: url('bg.png');
     background-size: cover;
 }
+
+p{
+    font-size: 1em;
+}

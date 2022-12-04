@@ -85,7 +85,13 @@ Public Class Teacher
         Dim bs1 As New BindingSource
         Try
             Dim conn As MySqlConnection = db.getMySqlConnection()
-            Dim Str As String = "SELECT a.TEACHERS_CODE, concat(b.LNAME,',',b.FNAME,' -',a.TEACHERS_CODE) AS TEACHER_NAME FROM " & tableName & " a JOIN " & TABLE_PERSONS & " b ON b.PERSON_ID=a.PERSON_ID WHERE b.STATUS_CODE=1"
+
+            Dim condition As String = ""
+            If CURRENT_ROLE = PERSON_ROLE.teacher Then
+                condition = " AND a.TEACHERS_CODE='" & CURRENT_TEACHER_CODE & "' "
+            End If
+
+            Dim Str As String = "SELECT a.TEACHERS_CODE, concat(b.LNAME,',',b.FNAME,' -',a.TEACHERS_CODE) AS TEACHER_NAME FROM " & tableName & " a JOIN " & TABLE_PERSONS & " b ON b.PERSON_ID=a.PERSON_ID WHERE b.STATUS_CODE=1 " & condition
             Dim Search As New MySqlDataAdapter(Str, conn)
             Dim ds As DataSet = New DataSet
             Search.Fill(ds, tableName)

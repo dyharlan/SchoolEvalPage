@@ -6,7 +6,7 @@
     </context-param>
     <context-param>
         <param-name>password</param-name>
-        <param-value>password</param-value>
+        <param-value>toorenia</param-value>
     </context-param>
     <servlet-mapping>
         <servlet-name>EvalProcessorServlet</servlet-name>

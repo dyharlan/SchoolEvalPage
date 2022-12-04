@@ -115,7 +115,7 @@ public class LoginServlet extends HttpServlet {
             String student_id = request.getParameter("userid");
             if(student_id.length() > 9){
                 dispatcher = request.getRequestDispatcher("login.jsp");
-                request.setAttribute("failure","An invalid User ID has been inputted. Please try again.");
+                request.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
                 dispatcher.include(request,response);
                 return;
             }
@@ -134,7 +134,7 @@ public class LoginServlet extends HttpServlet {
             conn.close();
             if(stu_num == null || !(student_id.equals(stu_num)) ){
                 dispatcher = request.getRequestDispatcher("login.jsp");
-                request.setAttribute("failure","An invalid User ID has been inputted. Please try again.");
+                request.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
                 dispatcher.include(request,response);
             }
             else if(student_id.equals(stu_num)){   

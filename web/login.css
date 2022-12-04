@@ -45,7 +45,3 @@ main {
 p{
     font-size: 1em;
 }
-
-p.error {
-    margin-top: 10px;
-}

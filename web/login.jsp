@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login Page</title>
+        <title>JSP Page</title>
         <link rel="stylesheet" href="login.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,11 +27,11 @@
             <div class="form-container">
                 <div class="login-form">
                     <form action="Login" METHOD="POST"> 
-                        <label for="userid">Enter Student Number: </label><input id="userid" type="number" name="userid" min="0" max="203299999" required><br>
+                        <label for="userid">Enter Student No.: </label><input id="userid" type="number" name="userid" required><br>
                         <br>
                         <input type="submit" Value="Login">
                         <%  if (request.getAttribute("failure") != null) { %>
-                            <p class="error"><%= request.getAttribute("failure")%></p>
+                            <p><%= request.getAttribute("failure")%></p>
                         <%  } %> 
                     </form>
                 </div>

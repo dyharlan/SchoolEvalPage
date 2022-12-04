@@ -70,31 +70,32 @@ Public Class Teacher_Detail
         HasChanges1 = 0
 
 
-        If _firstName = Nothing Then
-            ErrorProvider1.SetError(Me.txtFname, "First Name cannot be empty.")
+        If _firstName = Nothing Or IsNumeric(_firstName) Then
+            ErrorProvider1.SetError(Me.txtFname, "Invalid First Name.")
             Me.txtFname.Focus()
             Return 0
         Else
             ErrorProvider1.SetError(Me.txtFname, "")
         End If
 
-        If _middleName = Nothing Then
-            ErrorProvider1.SetError(Me.txtMname, "Middle Name cannot be empty.")
+        If _middleName = Nothing Or IsNumeric(_middleName) Then
+            ErrorProvider1.SetError(Me.txtMname, "Invalid Middle Name .")
             Me.txtMname.Focus()
             Return 0
         Else
             ErrorProvider1.SetError(Me.txtMname, "")
         End If
 
-        If _lastName = Nothing Then
-            ErrorProvider1.SetError(Me.txtLname, "Last Name cannot be empty.")
+        If _lastName = Nothing Or IsNumeric(_lastName) Then
+            ErrorProvider1.SetError(Me.txtLname, "Invalid Last Name.")
             Me.txtLname.Focus()
             Return 0
         Else
             ErrorProvider1.SetError(Me.txtLname, "")
         End If
 
-        If _teacherCode = Nothing Then
+
+        If IsNumeric(_teacherCode) = False Then
             ErrorProvider1.SetError(Me.txtTeacherCode, "Invalid Teachers Code.")
             Me.txtTeacherCode.Focus()
             Return 0

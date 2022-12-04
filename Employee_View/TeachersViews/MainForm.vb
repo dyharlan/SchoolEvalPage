@@ -111,7 +111,11 @@ Public Class MainForm
         If isServerConnected() = False Then
             Return
         End If
-
+        If CONN_STATUS = SERVER_STATE.CONNECTED Then
+            lblConnStatus.Text = "Connected"
+        Else
+            lblConnStatus.Text = "Disconnected"
+        End If
         init()
 
     End Sub
@@ -174,9 +178,16 @@ Public Class MainForm
         CURRENT_TEACHER_CODE = 0
         CURRENT_USER = Nothing
 
+        If CONN_STATUS = SERVER_STATE.CONNECTED Then
+            lblConnStatus.Text = "Connected"
+        Else
+            lblConnStatus.Text = "Disconnected"
+        End If
+
         Dim login As New LogIn
         login.MdiParent = Me
         login.Show()
+
 
     End Sub
 
@@ -189,6 +200,8 @@ Public Class MainForm
     End Sub
 
     Private Sub EvalStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EvalStatusToolStripMenuItem.Click
-        EvalScoreView.ShowDialog()
+        Dim scoreView As New EvalScoreView
+        scoreView.MdiParent = Me
+        scoreView.Show()
     End Sub
 End Class

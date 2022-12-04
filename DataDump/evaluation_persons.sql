@@ -28,7 +28,7 @@ CREATE TABLE `persons` (
   `MNAME` varchar(25) DEFAULT NULL,
   `LNAME` varchar(30) NOT NULL,
   `DOB` date NOT NULL,
-  `ROLE_CODE` int NOT NULL,
+  `ROLE_CODE` int NOT NULL DEFAULT '1',
   `YR_START` int NOT NULL,
   `STATUS_CODE` int NOT NULL,
   PRIMARY KEY (`PERSON_ID`),
@@ -46,7 +46,7 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
-INSERT INTO `persons` VALUES (1,'Juan',NULL,'de la Cruz','2002-04-07',1,2022,1),(2,'Pedro','Agapito','Pinto','2001-11-29',1,2022,1),(3,'Liza','Handumon','Pineda','2002-06-18',1,2022,1),(4,'Mateo','Aquino','Santos','2002-09-10',1,2022,1),(5,'Jose','de Santos','Waldo','2001-09-11',1,2022,1),(6,'Mary Joy','Trinidad','de Santa','1964-04-11',2,1995,1),(7,'Carlos','Joaquim','Legaspi','1972-08-23',2,1997,1),(8,'Roberto',NULL,'Legarda','1969-05-02',2,2005,1),(9,'Walter',NULL,'Philips','1981-11-11',2,1992,1),(10,'Josephine',NULL,'Rizal','1988-02-09',2,2009,1),(11,'Mark','Bow','Dahlberg','2002-04-06',1,2002,1),(12,'Andrew','Mayn','Drotal','1988-06-04',2,2006,2);
+INSERT INTO `persons` VALUES (1,'Juan',NULL,'de la Cruz','2002-04-07',1,2022,1),(2,'Pedro','Agapito','Pinto','2001-11-29',1,2022,1),(3,'Liza','Handumon','Pineda','2002-06-18',1,2022,1),(4,'Mateo','Aquino','Santos','2002-09-10',1,2022,1),(5,'Jose','de Santos','Waldo','2001-09-11',1,2022,1),(6,'Mary Joy','Trinidad','de Santa','1964-04-11',2,1995,1),(7,'Carlos','Joaquim','Legaspi','1972-08-23',2,1997,1),(8,'Roberto',NULL,'Legarda','1969-05-02',2,2005,1),(9,'Walter',NULL,'Philips','1981-11-11',2,1992,1),(10,'Josephine',NULL,'Rizal','1988-02-09',2,2009,1),(11,'Mark','Bow','Dahlberg','2002-04-06',1,2002,1),(12,'Andrew','Mayn','Drotal','1988-06-04',3,2006,1);
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 13:40:01
+-- Dump completed on 2022-12-04 21:52:31

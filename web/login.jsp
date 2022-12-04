@@ -29,7 +29,10 @@
                     <form action="Login" METHOD="POST"> 
                         <label for="userid">Enter Student No.: </label><input id="userid" type="text" name="userid" required><br>
                         <br>
-                        <input type="submit" Value="Login"> 
+                        <input type="submit" Value="Login">
+                        <%  if (session.getAttribute("failure") != null) { %>
+                            <h2><%= session.getAttribute("failure")%></h2>
+                        <%  } %> 
                     </form>
                 </div>
             </div>

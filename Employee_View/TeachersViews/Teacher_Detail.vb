@@ -103,6 +103,12 @@ Public Class Teacher_Detail
             ErrorProvider1.SetError(Me.txtTeacherCode, "")
         End If
 
+        If isStudentTeacherNumValid(_teacherCode) = False Then
+            MsgBox("Invalid Teacher Code", MsgBoxStyle.Critical)
+            Me.txtTeacherCode.Focus()
+            Me.txtTeacherCode.SelectAll()
+            Return 0
+        End If
 
         Dim result As Integer
 

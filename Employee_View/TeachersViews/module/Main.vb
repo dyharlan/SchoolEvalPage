@@ -36,6 +36,18 @@
         CONNECTED = True
         DISCONNECTED = False
     End Enum
+    Public Function isStudentTeacherNumValid(num As String) As Boolean
 
+        Try
+            Dim yr As String = Now.Year.ToString
+            Dim curYr = num.Substring(0, yr.Length)
+            Return yr = curYr
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return False
+
+    End Function
 
 End Module

@@ -50,13 +50,7 @@ Public Class StudentDetail
     End Sub
 
 
-    Function isStudentNumValid(stunum As String) As Boolean
 
-        Dim yr As String = Now.Year.ToString
-        Dim curYr = stunum.Substring(0, yr.Length)
-        Return yr = curYr
-
-    End Function
     Function save() As Integer
 
         Dim _txtId As String = Trim(Me.txtId.Text)
@@ -120,7 +114,7 @@ Public Class StudentDetail
         End If
 
 
-        If isStudentNumValid(_studNum) = False Then
+        If isStudentTeacherNumValid(_studNum) = False Then
             MsgBox("Invalid Student Number", MsgBoxStyle.Critical)
             Me.txtStudNum.Focus()
             Me.txtStudNum.SelectAll()

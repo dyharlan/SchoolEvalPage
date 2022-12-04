@@ -1,7 +1,8 @@
 ﻿Module Main
 
     Public DATABASE_NAME As String = "evaluation"
-    Public SERVER_NAME As String = "server=localhost;user=root;password=password;database=" & DATABASE_NAME & ";port=3310;"
+    Public SERVER_NAME As String = "server=localhost;user=root;password=;database=" & DATABASE_NAME & ";port=3310;"
+
     Public Const TABLE_PERSONS = "persons"
     Public Const TABLE_STUDENTS = "students"
     Public Const TABLE_DEPARTMENTS = "departments"

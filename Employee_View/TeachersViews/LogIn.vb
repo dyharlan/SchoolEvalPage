@@ -65,7 +65,7 @@
         Try
 
 
-
+            CURRENT_TEACHER_CODE = 0
             Select Case CURRENT_ROLE
                 Case 0
                     Return
@@ -82,7 +82,6 @@
                     End If
                     Dim result As Boolean = teacher.isTeacherCodeExist(txtCode.Text)
                     If result = True Then
-                        EvalScoreView.holder2 = txtCode.Text
                         CURRENT_ROLE = PERSON_ROLE.teacher
                         MainForm.tsUser.Text = CURRENT_USER
                         MainForm.teacherMenu()
@@ -93,7 +92,7 @@
                         Me.txtCode.Focus()
 
                     End If
-                    CURRENT_ROLE = PERSON_ROLE.teacher
+
                 Case 3
                     Dim password As String = "admin"
                     If txtCode.Text = password Then
@@ -120,9 +119,7 @@
 
     End Sub
 
-    Private Sub txtCode_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCode.KeyPress
 
-    End Sub
 
     Private Sub txtCode_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCode.KeyDown
         If e.KeyCode = Keys.Enter Then

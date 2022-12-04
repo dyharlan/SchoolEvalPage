@@ -124,4 +124,16 @@ Public Class Class_Detail
         teacherDetail.ShowDialog()
         loadTeacherCode()
     End Sub
+
+    Private Sub Class_Detail_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If CURRENT_ROLE = PERSON_ROLE.admin Then
+            ToolStripButton1.Enabled = True
+            ToolStripButton2.Enabled = True
+            ToolStripButton4.Enabled = True
+        Else
+            ToolStripButton1.Enabled = False
+            ToolStripButton2.Enabled = False
+            ToolStripButton4.Enabled = False
+        End If
+    End Sub
 End Class

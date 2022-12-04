@@ -107,7 +107,7 @@ Public Class MainForm
         ToolStrip1.Visible = True
     End Sub
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        isMenuEnabled(False)
+
         If isServerConnected() = False Then
             Return
         End If
@@ -120,7 +120,7 @@ Public Class MainForm
         db.getMySqlConnection()
         If CONN_STATUS = SERVER_STATE.CONNECTED Then
             Me.lblConnStatus.Text = "Connected"
-            logOut()
+
         Else
             Me.lblConnStatus.Text = "Disconnected"
             Dim conDetail As New DBConnectionDetail
@@ -140,6 +140,7 @@ Public Class MainForm
         Me.tsEvaluation.Enabled = True
         Me.tsLogOut.Enabled = True
         AddNewCourseToolStripMenuItem.Enabled = False
+        AddNewClassToolStripMenuItem.Enabled = False
     End Sub
     Sub adminMenu()
         Me.tsSetting.Enabled = True
@@ -151,6 +152,7 @@ Public Class MainForm
         Me.tsEvaluation.Enabled = True
         Me.tsLogOut.Enabled = True
         AddNewCourseToolStripMenuItem.Enabled = True
+        AddNewClassToolStripMenuItem.Enabled = True
     End Sub
 
     Sub isMenuEnabled(val As Boolean)
@@ -168,6 +170,9 @@ Public Class MainForm
         isMenuEnabled(False)
         ToolStripMenuItem1.Enabled = False
         Me.tsUser.Text = Nothing
+        CURRENT_ROLE = 0
+        CURRENT_TEACHER_CODE = 0
+        CURRENT_USER = Nothing
 
         Dim login As New LogIn
         login.MdiParent = Me
@@ -179,7 +184,7 @@ Public Class MainForm
         logOut()
     End Sub
 
-    Private Sub EvalStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EvalStatusToolStripMenuItem.Click
-        EvalScoreView.ShowDialog()
+    Private Sub MainForm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        isMenuEnabled(False)
     End Sub
 End Class

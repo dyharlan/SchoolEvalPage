@@ -121,6 +121,9 @@ Public Class CourseAssignmentDetail
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If courseAssignmentBS.Count > 0 Then
             Dim row = courseAssignmentBS.Current
+            If (row.item("TEACHERS_CODE") <> CURRENT_TEACHER_CODE) Then
+                MsgBox("ACCESS DENIED.", MsgBoxStyle.Critical)
+            End If
             If MsgBox("Delete class assignment for " & row.Item("COURSE_CODE") & " ?", MsgBoxStyle.YesNo) = vbYes Then
 
                 Dim course As New CourseAssignment

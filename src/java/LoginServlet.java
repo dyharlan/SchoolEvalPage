@@ -113,6 +113,12 @@ public class LoginServlet extends HttpServlet {
             //retrieve preparedStatement obj from conn
             ps = conn.prepareStatement(ps_query);
             String student_id = request.getParameter("userid");
+            if(student_id.length() > 9){
+                dispatcher = request.getRequestDispatcher("login.jsp");
+                request.setAttribute("failure","Invalid User ID has been inputted. Please try again.");
+                dispatcher.include(request,response);
+                return;
+            }
             ps.setString(1, student_id);
             //execute parameterized query
             ResultSet rs = ps.executeQuery();

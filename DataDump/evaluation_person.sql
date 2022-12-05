@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `persons`
+-- Table structure for table `person`
 --
 
-DROP TABLE IF EXISTS `persons`;
+DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `persons` (
+CREATE TABLE `person` (
   `PERSON_ID` int NOT NULL AUTO_INCREMENT,
   `FNAME` varchar(35) NOT NULL,
   `MNAME` varchar(25) DEFAULT NULL,
@@ -35,19 +35,19 @@ CREATE TABLE `persons` (
   UNIQUE KEY `FNAME` (`FNAME`,`MNAME`,`LNAME`),
   KEY `ROLE_CODE` (`ROLE_CODE`),
   KEY `STATUS_CODE` (`STATUS_CODE`),
-  CONSTRAINT `persons_ibfk_1` FOREIGN KEY (`ROLE_CODE`) REFERENCES `person_roles` (`ROLE_CODE`),
-  CONSTRAINT `persons_ibfk_2` FOREIGN KEY (`STATUS_CODE`) REFERENCES `person_status` (`STATUS_CODE`)
+  CONSTRAINT `person_ibfk_1` FOREIGN KEY (`ROLE_CODE`) REFERENCES `person_role` (`ROLE_CODE`),
+  CONSTRAINT `person_ibfk_2` FOREIGN KEY (`STATUS_CODE`) REFERENCES `person_status` (`STATUS_CODE`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `persons`
+-- Dumping data for table `person`
 --
 
-LOCK TABLES `persons` WRITE;
-/*!40000 ALTER TABLE `persons` DISABLE KEYS */;
-INSERT INTO `persons` VALUES (1,'Juan',NULL,'de la Cruz','2002-04-07',1,2022,1),(2,'Pedro','Agapito','Pinto','2001-11-29',1,2022,1),(3,'Liza','Handumon','Pineda','2002-06-18',1,2022,1),(4,'Mateo','Aquino','Santos','2002-09-10',1,2022,1),(5,'Jose','de Santos','Waldo','2001-09-11',1,2022,1),(6,'Mary Joy','Trinidad','de Santa','1964-04-11',2,2022,1),(7,'Carlos','Joaquim','Legaspi','1972-08-23',2,2022,1),(8,'Roberto',NULL,'Legarda','1969-05-02',2,2022,1),(9,'Walter',NULL,'Philips','1981-11-11',2,2022,1),(10,'Josephine',NULL,'Rizal','1988-02-09',2,2022,1),(11,'Mark','Bow','Dahlberg','2002-04-06',1,2022,1),(12,'Andrew','Mayn','Drotal','1988-06-04',3,2006,1);
-/*!40000 ALTER TABLE `persons` ENABLE KEYS */;
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (1,'Juan',NULL,'de la Cruz','2002-04-07',1,2022,1),(2,'Pedro','Agapito','Pinto','2001-11-29',1,2022,1),(3,'Liza','Handumon','Pineda','2002-06-18',1,2022,1),(4,'Mateo','Aquino','Santos','2002-09-10',1,2022,1),(5,'Jose','de Santos','Waldo','2001-09-11',1,2022,1),(6,'Mary Joy','Trinidad','de Santa','1964-04-11',2,2022,1),(7,'Carlos','Joaquim','Legaspi','1972-08-23',2,2022,1),(8,'Roberto',NULL,'Legarda','1969-05-02',2,2022,1),(9,'Walter',NULL,'Philips','1981-11-11',2,2022,1),(10,'Josephine',NULL,'Rizal','1988-02-09',2,2022,1),(11,'Mark','Bow','Dahlberg','2002-04-06',1,2022,1),(12,'Andrew','Mayn','Drotal','1988-06-04',3,2006,1);
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

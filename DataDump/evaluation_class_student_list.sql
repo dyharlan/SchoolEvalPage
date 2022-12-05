@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `departments`
+-- Table structure for table `class_student_list`
 --
 
-DROP TABLE IF EXISTS `departments`;
+DROP TABLE IF EXISTS `class_student_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `departments` (
-  `DEPT_ID` int NOT NULL,
-  `DEPT_NAME` varchar(50) NOT NULL,
-  PRIMARY KEY (`DEPT_ID`)
+CREATE TABLE `class_student_list` (
+  `CLASS_CODE` int NOT NULL,
+  `STU_NUM` int NOT NULL,
+  UNIQUE KEY `STU_NUM` (`STU_NUM`),
+  KEY `CLASS_CODE` (`CLASS_CODE`),
+  CONSTRAINT `class_student_list_ibfk_1` FOREIGN KEY (`CLASS_CODE`) REFERENCES `class` (`CLASS_CODE`),
+  CONSTRAINT `class_student_list_ibfk_2` FOREIGN KEY (`STU_NUM`) REFERENCES `student` (`STU_NUM`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `departments`
+-- Dumping data for table `class_student_list`
 --
 
-LOCK TABLES `departments` WRITE;
-/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` VALUES (9,'College of Information and Computing Sciences'),(15,'Faculty of Arts and Letters'),(21,'College of Nursing'),(26,'College of Science'),(29,'College of Education');
-/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+LOCK TABLES `class_student_list` WRITE;
+/*!40000 ALTER TABLE `class_student_list` DISABLE KEYS */;
+INSERT INTO `class_student_list` VALUES (124,202242069),(124,202269420),(125,202213379),(126,202231415),(127,202212345),(128,202246723);
+/*!40000 ALTER TABLE `class_student_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

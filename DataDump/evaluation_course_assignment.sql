@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `class_student_lists`
+-- Table structure for table `course_assignment`
 --
 
-DROP TABLE IF EXISTS `class_student_lists`;
+DROP TABLE IF EXISTS `course_assignment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `class_student_lists` (
+CREATE TABLE `course_assignment` (
+  `COURSE_CODE` int NOT NULL,
+  `TEACHER_CODE` int NOT NULL,
   `CLASS_CODE` int NOT NULL,
-  `STU_NUM` int NOT NULL,
-  UNIQUE KEY `STU_NUM` (`STU_NUM`),
-  KEY `CLASS_CODE` (`CLASS_CODE`),
-  CONSTRAINT `class_student_lists_ibfk_1` FOREIGN KEY (`CLASS_CODE`) REFERENCES `classes` (`CLASS_CODE`),
-  CONSTRAINT `class_student_lists_ibfk_2` FOREIGN KEY (`STU_NUM`) REFERENCES `students` (`STU_NUM`)
+  UNIQUE KEY `COURSE_CODE` (`COURSE_CODE`,`CLASS_CODE`),
+  KEY `TEACHER_CODE` (`TEACHER_CODE`),
+  CONSTRAINT `course_assignment_ibfk_1` FOREIGN KEY (`TEACHER_CODE`) REFERENCES `TEACHER` (`TEACHER_CODE`),
+  CONSTRAINT `course_assignment_ibfk_2` FOREIGN KEY (`COURSE_CODE`) REFERENCES `course_offering` (`COURSE_CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `class_student_lists`
+-- Dumping data for table `course_assignment`
 --
 
-LOCK TABLES `class_student_lists` WRITE;
-/*!40000 ALTER TABLE `class_student_lists` DISABLE KEYS */;
-INSERT INTO `class_student_lists` VALUES (124,202242069),(124,202269420),(125,202213379),(126,202231415),(127,202212345),(128,202246723);
-/*!40000 ALTER TABLE `class_student_lists` ENABLE KEYS */;
+LOCK TABLES `course_assignment` WRITE;
+/*!40000 ALTER TABLE `course_assignment` DISABLE KEYS */;
+INSERT INTO `course_assignment` VALUES (2602,2022123496,124),(2602,2022123496,127),(2601,2022432197,124),(2605,2022750511,124),(2604,2022901211,124),(2603,2022987531,124);
+/*!40000 ALTER TABLE `course_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

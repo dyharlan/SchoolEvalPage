@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `person_roles`
+-- Table structure for table `class`
 --
 
-DROP TABLE IF EXISTS `person_roles`;
+DROP TABLE IF EXISTS `class`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `person_roles` (
-  `ROLE_CODE` int NOT NULL,
-  `ROLE_NAME` varchar(30) NOT NULL,
-  PRIMARY KEY (`ROLE_CODE`)
+CREATE TABLE `class` (
+  `CLASS_CODE` int NOT NULL,
+  `CLASS_NAME` varchar(50) NOT NULL,
+  `teacher_CODE` int NOT NULL,
+  PRIMARY KEY (`CLASS_CODE`),
+  KEY `teacher_CODE` (`teacher_CODE`),
+  CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_CODE`) REFERENCES `teacher` (`teacher_CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `person_roles`
+-- Dumping data for table `class`
 --
 
-LOCK TABLES `person_roles` WRITE;
-/*!40000 ALTER TABLE `person_roles` DISABLE KEYS */;
-INSERT INTO `person_roles` VALUES (1,'Student'),(2,'Teacher'),(3,'Administrator');
-/*!40000 ALTER TABLE `person_roles` ENABLE KEYS */;
+LOCK TABLES `class` WRITE;
+/*!40000 ALTER TABLE `class` DISABLE KEYS */;
+INSERT INTO `class` VALUES (124,'1-CSA',2022432197),(125,'1-CSB',2022750511),(126,'1-CSC',2022987531),(127,'1-CSD',2022901211),(128,'1-CSE',2022123496),(129,'2-CSA',2022987531);
+/*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 21:58:56
+-- Dump completed on 2022-12-04 21:58:57

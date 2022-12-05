@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `course_offerings`
+-- Table structure for table `teacher`
 --
 
-DROP TABLE IF EXISTS `course_offerings`;
+DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `course_offerings` (
-  `COURSE_CODE` int NOT NULL,
-  `COURSE_NAME` varchar(50) NOT NULL,
-  PRIMARY KEY (`COURSE_CODE`)
+CREATE TABLE `teacher` (
+  `PERSON_ID` int NOT NULL,
+  `teacher_CODE` int NOT NULL,
+  `DEPT_ID` int NOT NULL,
+  PRIMARY KEY (`teacher_CODE`,`PERSON_ID`),
+  UNIQUE KEY `teacher_CODE` (`teacher_CODE`),
+  KEY `PERSON_ID` (`PERSON_ID`),
+  KEY `DEPT_ID` (`DEPT_ID`),
+  CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`PERSON_ID`) REFERENCES `person` (`PERSON_ID`),
+  CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`DEPT_ID`) REFERENCES `department` (`DEPT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_offerings`
+-- Dumping data for table `teacher`
 --
 
-LOCK TABLES `course_offerings` WRITE;
-/*!40000 ALTER TABLE `course_offerings` DISABLE KEYS */;
-INSERT INTO `course_offerings` VALUES (2601,'Introduction to Computers'),(2602,'Programming I'),(2603,'Discrete Mathematics'),(2604,'Values Education'),(2605,'Data Structures and Algorithms');
-/*!40000 ALTER TABLE `course_offerings` ENABLE KEYS */;
+LOCK TABLES `teacher` WRITE;
+/*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
+INSERT INTO `teacher` VALUES (7,2022123496,9),(6,2022432197,9),(10,2022750511,9),(9,2022901211,9),(8,2022987531,9);
+/*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

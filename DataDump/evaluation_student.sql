@@ -16,33 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `teachers`
+-- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `teachers`;
+DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `teachers` (
+CREATE TABLE `student` (
   `PERSON_ID` int NOT NULL,
-  `TEACHERS_CODE` int NOT NULL,
-  `DEPT_ID` int NOT NULL,
-  PRIMARY KEY (`TEACHERS_CODE`,`PERSON_ID`),
-  UNIQUE KEY `TEACHERS_CODE` (`TEACHERS_CODE`),
+  `STU_NUM` int NOT NULL,
+  PRIMARY KEY (`STU_NUM`,`PERSON_ID`),
+  UNIQUE KEY `STU_NUM` (`STU_NUM`),
   KEY `PERSON_ID` (`PERSON_ID`),
-  KEY `DEPT_ID` (`DEPT_ID`),
-  CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`PERSON_ID`) REFERENCES `persons` (`PERSON_ID`),
-  CONSTRAINT `teachers_ibfk_2` FOREIGN KEY (`DEPT_ID`) REFERENCES `departments` (`DEPT_ID`)
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`PERSON_ID`) REFERENCES `person` (`PERSON_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `teachers`
+-- Dumping data for table `student`
 --
 
-LOCK TABLES `teachers` WRITE;
-/*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
-INSERT INTO `teachers` VALUES (7,2022123496,9),(6,2022432197,9),(10,2022750511,9),(9,2022901211,9),(8,2022987531,9);
-/*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (4,202212345),(2,202213379),(3,202231415),(11,202242069),(5,202246723),(1,202269420);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 21:58:56
+-- Dump completed on 2022-12-04 21:58:57

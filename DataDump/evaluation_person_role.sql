@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `students`
+-- Table structure for table `person_role`
 --
 
-DROP TABLE IF EXISTS `students`;
+DROP TABLE IF EXISTS `person_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `students` (
-  `PERSON_ID` int NOT NULL,
-  `STU_NUM` int NOT NULL,
-  PRIMARY KEY (`STU_NUM`,`PERSON_ID`),
-  UNIQUE KEY `STU_NUM` (`STU_NUM`),
-  KEY `PERSON_ID` (`PERSON_ID`),
-  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`PERSON_ID`) REFERENCES `persons` (`PERSON_ID`)
+CREATE TABLE `person_role` (
+  `ROLE_CODE` int NOT NULL,
+  `ROLE_NAME` varchar(30) NOT NULL,
+  PRIMARY KEY (`ROLE_CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `students`
+-- Dumping data for table `person_role`
 --
 
-LOCK TABLES `students` WRITE;
-/*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (4,202212345),(2,202213379),(3,202231415),(11,202242069),(5,202246723),(1,202269420);
-/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+LOCK TABLES `person_role` WRITE;
+/*!40000 ALTER TABLE `person_role` DISABLE KEYS */;
+INSERT INTO `person_role` VALUES (1,'Student'),(2,'Teacher'),(3,'Administrator');
+/*!40000 ALTER TABLE `person_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 21:58:57
+-- Dump completed on 2022-12-04 21:58:56

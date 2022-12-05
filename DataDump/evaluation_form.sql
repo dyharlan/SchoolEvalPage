@@ -16,31 +16,41 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `course_assignments`
+-- Table structure for table `form`
 --
 
-DROP TABLE IF EXISTS `course_assignments`;
+DROP TABLE IF EXISTS `form`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `course_assignments` (
-  `COURSE_CODE` int NOT NULL,
-  `TEACHERS_CODE` int NOT NULL,
-  `CLASS_CODE` int NOT NULL,
-  UNIQUE KEY `COURSE_CODE` (`COURSE_CODE`,`CLASS_CODE`),
-  KEY `TEACHERS_CODE` (`TEACHERS_CODE`),
-  CONSTRAINT `course_assignments_ibfk_1` FOREIGN KEY (`TEACHERS_CODE`) REFERENCES `teachers` (`TEACHERS_CODE`),
-  CONSTRAINT `course_assignments_ibfk_2` FOREIGN KEY (`COURSE_CODE`) REFERENCES `course_offerings` (`COURSE_CODE`)
+CREATE TABLE `form` (
+  `FORM_CODE` varchar(128) NOT NULL,
+  `TEACHER_CODE` int NOT NULL,
+  `Q1_SCORE` int NOT NULL,
+  `Q2_SCORE` int NOT NULL,
+  `Q3_SCORE` int NOT NULL,
+  `Q4_SCORE` int NOT NULL,
+  `Q5_SCORE` int NOT NULL,
+  `Q6_SCORE` int NOT NULL,
+  `Q7_SCORE` int NOT NULL,
+  `Q8_SCORE` int NOT NULL,
+  `Q9_SCORE` int NOT NULL,
+  `Q10_SCORE` int NOT NULL,
+  UNIQUE KEY `FORM_CODE` (`FORM_CODE`),
+  UNIQUE KEY `FORM_CODE_2` (`FORM_CODE`,`TEACHER_CODE`),
+  KEY `TEACHER_CODE` (`TEACHER_CODE`),
+  CONSTRAINT `form_ibfk_1` FOREIGN KEY (`FORM_CODE`) REFERENCES `eval_status` (`FORM_CODE`) ON DELETE CASCADE,
+  CONSTRAINT `form_ibfk_2` FOREIGN KEY (`TEACHER_CODE`) REFERENCES `TEACHER` (`TEACHER_CODE`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_assignments`
+-- Dumping data for table `form`
 --
 
-LOCK TABLES `course_assignments` WRITE;
-/*!40000 ALTER TABLE `course_assignments` DISABLE KEYS */;
-INSERT INTO `course_assignments` VALUES (2602,2022123496,124),(2602,2022123496,127),(2601,2022432197,124),(2605,2022750511,124),(2604,2022901211,124),(2603,2022987531,124);
-/*!40000 ALTER TABLE `course_assignments` ENABLE KEYS */;
+LOCK TABLES `form` WRITE;
+/*!40000 ALTER TABLE `form` DISABLE KEYS */;
+INSERT INTO `form` VALUES ('4e5b661f-b4ec-487d-89f5-357cd9fe5b46',2022432197,5,4,4,4,4,5,5,5,5,5),('7e239606-a93c-4191-86c7-403e384a37a9',2022123496,3,5,5,5,4,4,4,3,4,5);
+/*!40000 ALTER TABLE `form` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
